@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="registramento.css">
+    <title>SENA - Recuperar Senha</title>
+</head>
+<body>
+    <main class="container">
+        <form id="formRecuperar">
+            <div class="header">
+                <div class="logo-box">S</div>
+                <h1>Recuperar Senha</h1>
+                <p>Insira seu email para receber um link de recuperação</p>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-login">Enviar Link de Recuperação</button>
+
+            <div class="register-link" style="margin-top: 20px;">
+                <p>
+                    <a href="login.html">
+                        <i class="fa-solid fa-arrow-left"></i> Voltar para Login
+                    </a>
+                </p>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        // Comunicação assíncrona com o Back-end em Java (RF03)
+        document.getElementById('formRecuperar').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            
+            fetch('/api/recuperar', {
+                method: 'POST',
+                body: email
+            })
+            .then(response => response.text().then(msg => ({ status: response.status, text: msg })))
+            .then(res => {
+                alert(res.text);
+            })
+            .catch(err => console.error("Erro na requisição:", err));
+        });
+    </script>
+</body>
+</html>

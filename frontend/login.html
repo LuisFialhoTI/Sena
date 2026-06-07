@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="registramento.css">
+    <title>SENA - Login</title>
+</head>
+<body>
+    <main class="container">
+        <form id="formLogin">
+            <div class="header">
+                <div class="logo-box">S</div>
+                <h1>SENA</h1>
+                <p id="subtitulo">Bem-vindo de volta</p>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label for="password">Senha</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" required>
+                </div>
+            </div>
+
+            <a href="recsenha.html" class="forgot-link">Esqueceu a senha?</a>
+
+            <button type="submit" class="btn-login">Entrar</button>
+
+            <div class="divider">
+                <span>OU</span>
+            </div>
+
+            <div class="register-link">
+                <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        // Comunicação assíncrona com o Back-end em Java (RF02)
+        document.getElementById('formLogin').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('password').value;
+            
+            fetch('/api/login', {
+                method: 'POST',
+                body: email + ':' + senha
+            })
+            .then(response => response.text().then(msg => ({ status: response.status, text: msg })))
+            .then(res => {
+                alert(res.text);
+                if (res.status === 200) {
+                    document.getElementById('subtitulo').innerText = "Autenticado com sucesso!";
+                    document.getElementById('subtitulo').style.color = "#1b7a6b";
+                }
+            })
+            .catch(err => console.error("Erro na requisição:", err));
+        });
+    </script>
+</body>
+</html>
