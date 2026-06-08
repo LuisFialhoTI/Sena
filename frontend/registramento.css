@@ -126,8 +126,24 @@ body {
     transition: 0.3s;
 }
 
+/* Correção para o botão de cadastro */
+.btn-login {
+    width: 100%;
+    padding: 14px;
+    background-color: #1b7a6b !important; /* !important garante a prioridade */
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    cursor: pointer;
+    margin-top: 20px;
+    display: block;
+    text-align: center;
+}
+
 .btn-login:hover {
-    background-color: #156155;
+    background-color: #145c51 !important;
 }
 
 .divider {

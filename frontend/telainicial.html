@@ -2,127 +2,59 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Sena - Home</title>
+    <title>SENA - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="bairros.css">
     <link rel="stylesheet" href="telainicial.css">
 </head>
 <body>
-
     <header class="navbar">
-        <div class="logo">Sena</div>
+        <div class="logo">SENA</div>
         <nav class="menu-central">
-            <a href="#" class="active-link">Buscar Moradia</a>
+            <a href="telainicial.html" class="btn-nav-active">Buscar Moradia</a>
             <a href="bairros.html">Explorar Bairros</a>
-            <a href="#">Cadastro de imóvel</a>
-            <a href="#">Sobre nós</a>
+            <a href="cadastro-imovel.html" id="link-cadastro-imovel">Cadastro de imóvel</a>
+            <a href="sobrenos.html">Sobre nós</a>
         </nav>
-        <div class="auth">
-            <a href="login.html" class="login-link">Entrar</a>
-            <a href="cadastro.html" class="btn-cadastrar-link">
-                <button class="btn-cadastrar">Cadastrar</button>
-            </a>
-        </div>
+        <div class="auth-group"><a href="login.html" class="btn-cadastrar" style="background-color: #64748b;">Sair</a></div>
     </header>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Encontre seu lar com <br><span>segurança</span></h1>
-            <p>Alugue propriedades com informações detalhadas sobre segurança do bairro, iluminação e condições das ruas.</p>
-
-            <div class="search-box">
-                <div class="search-item">
-                    <label>Localização</label>
-                    <input type="text" placeholder="Onde você quer ficar?">
-                </div>
-                <div class="search-item">
-                    <label>Preço máximo</label>
-                    <input type="text" placeholder="Qualquer preço">
-                </div>
-                <button class="btn-buscar"><i class="fa-solid fa-search"></i> Buscar</button>
-            </div>
-        </div>
+    <section class="hero-header">
+        <h1>Moradias <span>Disponíveis</span></h1>
+        <p>Encontre o local ideal com segurança garantida.</p>
     </section>
-
-    <section class="propriedades">
-        <h2>Propriedades em Destaque</h2>
-        <p class="sub">Descubra acomodações verificadas com informações detalhadas.</p>
-        <div class="grid-cards" id="lista-imoveis"></div>
-    </section>
-
+    <main class="container"><div class="grid-bairros" id="lista-imoveis"></div></main>
     <div class="chat-container">
-        <button id="chat-toggle" class="chat-btn"><i class="fa-solid fa-robot"></i> Ajuda SENA</button>
-        
-        <div id="chat-window" class="chat-window hidden">
-            <div class="chat-header">
-                <span><i class="fa-solid fa-headset"></i> Assistente Virtual</span>
-                <button id="chat-close"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-            <div class="chat-messages" id="chat-messages">
-                <div class="msg bot-msg">Olá! Sou o assistente virtual do SENA. Como posso ajudar na sua busca por moradia hoje?</div>
-            </div>
+        <button class="chat-btn" id="chatBtn" onclick="toggleChat()"><i class="fa-solid fa-comments"></i> Suporte Sena</button>
+        <div class="chat-window hidden" id="chatWindow">
+            <div class="chat-header"><span>Suporte</span><button onclick="toggleChat()"><i class="fa-solid fa-xmark"></i></button></div>
+            <div class="chat-messages" id="chatMessages"><div class="msg bot-msg">Olá! Como posso ajudar hoje?</div></div>
             <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Escreva sua dúvida...">
-                <button id="chat-send"><i class="fa-solid fa-paper-plane"></i></button>
+                <input type="text" id="chatInput" placeholder="Mensagem..." onkeypress="handleEnter(event)">
+                <button onclick="enviarMensagem()"><i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </div>
     </div>
-
     <script>
-        // Carregar Imóveis
-        document.addEventListener("DOMContentLoaded", function() {
-            fetch('/api/imoveis')
-                .then(res => res.json())
-                .then(dados => {
-                    const container = document.getElementById('lista-imoveis');
-                    dados.forEach(imovel => {
-                        container.innerHTML += `
-                            <div class="card" onclick="window.location.href='detalhes.html'">
-                                <div class="card-img" style="background-image: url('${imovel.imagem}'); background-size: cover; height: 220px;">
-                                    <div class="shield-badge"><i class="fa-solid fa-shield-halved"></i></div>
-                                </div>
-                                <div class="card-info">
-                                    <h3>${imovel.titulo}</h3>
-                                    <p class="specs">${imovel.localizacao}</p>
-                                    <div class="card-footer">
-                                        <span class="price">R$ ${imovel.preco}<span class="per-month">/mês</span></span>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-                    });
-                });
-        });
-
-        // Lógica do Chatbot
-        const chatToggle = document.getElementById('chat-toggle');
-        const chatWindow = document.getElementById('chat-window');
-        const chatClose = document.getElementById('chat-close');
-        const chatInput = document.getElementById('chat-input');
-        const chatMessages = document.getElementById('chat-messages');
-
-        chatToggle.addEventListener('click', () => { chatWindow.classList.remove('hidden'); chatToggle.classList.add('hidden'); });
-        chatClose.addEventListener('click', () => { chatWindow.classList.add('hidden'); chatToggle.classList.remove('hidden'); });
-
-        document.getElementById('chat-send').addEventListener('click', enviarMensagem);
-        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') enviarMensagem(); });
-
-        function enviarMensagem() {
-            const texto = chatInput.value.trim();
-            if (!texto) return;
-            chatMessages.innerHTML += `<div class="msg user-msg">${texto}</div>`;
-            chatInput.value = '';
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-
-            const typingId = "typing-" + Date.now();
-            chatMessages.innerHTML += `<div id="${typingId}" class="msg bot-msg">Processando...</div>`;
-
-            fetch('/api/chat', { method: 'POST', body: texto })
-            .then(res => res.text())
-            .then(resposta => {
-                document.getElementById(typingId).remove();
-                chatMessages.innerHTML += `<div class="msg bot-msg">${resposta}</div>`;
-                chatMessages.scrollTop = chatMessages.scrollHeight;
+        if (localStorage.getItem('tipoContaSena') === 'Hóspede') document.getElementById('link-cadastro-imovel').style.display = 'none';
+        fetch('/api/imoveis').then(r => r.json()).then(imoveis => {
+            imoveis.forEach(i => {
+                document.getElementById('lista-imoveis').innerHTML += `<div class="card"><div class="card-image" style="background-image: url('${i.imagem}')"></div><div class="card-content"><h3>${i.titulo}</h3><p class="location"><i class="fa-solid fa-location-dot"></i> ${i.localizacao}</p><div class="card-footer"><span style="font-weight:bold; color:#1b7a6b;">R$ ${i.preco}/mês</span><button class="btn-detalhes">Detalhes</button></div></div></div>`;
             });
+        });
+        function toggleChat() { document.getElementById('chatWindow').classList.toggle('hidden'); document.getElementById('chatBtn').classList.toggle('hidden'); }
+        function handleEnter(e) { if (e.key === 'Enter') enviarMensagem(); }
+        function enviarMensagem() {
+            const input = document.getElementById('chatInput');
+            const msgText = input.value.trim();
+            if (!msgText) return;
+            addMsg(msgText, 'user-msg'); input.value = '';
+            fetch('/api/chat', { method: 'POST', body: msgText }).then(r => r.text()).then(bot => addMsg(bot, 'bot-msg'));
+        }
+        function addMsg(texto, classe) {
+            const chatMessages = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div'); msgDiv.className = `msg ${classe}`; msgDiv.innerText = texto;
+            chatMessages.appendChild(msgDiv); chatMessages.scrollTop = chatMessages.scrollHeight;
         }
     </script>
 </body>

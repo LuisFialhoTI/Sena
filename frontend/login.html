@@ -12,59 +12,35 @@
             <div class="header">
                 <div class="logo-box">S</div>
                 <h1>SENA</h1>
-                <p id="subtitulo">Bem-vindo de volta</p>
+                <p>Bem-vindo de volta</p>
             </div>
-
             <div class="input-group">
-                <label for="email">Email</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" id="email" required>
-                </div>
+                <label>Email</label>
+                <div class="input-box"><i class="fa-solid fa-envelope"></i><input type="email" id="email" required></div>
             </div>
-
             <div class="input-group">
-                <label for="password">Senha</label>
-                <div class="input-box">
-                    <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="password" required>
-                </div>
+                <label>Senha</label>
+                <div class="input-box"><i class="fa-solid fa-lock"></i><input type="password" id="password" required></div>
             </div>
-
             <a href="recsenha.html" class="forgot-link">Esqueceu a senha?</a>
-
             <button type="submit" class="btn-login">Entrar</button>
-
-            <div class="divider">
-                <span>OU</span>
-            </div>
-
-            <div class="register-link">
-                <p>Não tem conta? <a href="#">Cadastre-se</a></p>
+            <div class="register-link" style="margin-top:20px;">
+                <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
             </div>
         </form>
     </main>
-
     <script>
-        // Comunicação assíncrona com o Back-end em Java (RF02)
         document.getElementById('formLogin').addEventListener('submit', function(e) {
             e.preventDefault();
-            const email = document.getElementById('email').value;
-            const senha = document.getElementById('password').value;
-            
-            fetch('/api/login', {
-                method: 'POST',
-                body: email + ':' + senha
-            })
-            .then(response => response.text().then(msg => ({ status: response.status, text: msg })))
+            fetch('/api/login', { method: 'POST', body: document.getElementById('email').value + ':' + document.getElementById('password').value })
+            .then(res => res.json().then(data => ({ status: res.status, body: data })))
             .then(res => {
-                alert(res.text);
+                alert(res.body.msg);
                 if (res.status === 200) {
-                    document.getElementById('subtitulo').innerText = "Autenticado com sucesso!";
-                    document.getElementById('subtitulo').style.color = "#1b7a6b";
+                    localStorage.setItem('tipoContaSena', res.body.tipo);
+                    window.location.href = "telainicial.html";
                 }
-            })
-            .catch(err => console.error("Erro na requisição:", err));
+            });
         });
     </script>
 </body>

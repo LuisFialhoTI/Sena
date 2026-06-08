@@ -1,7 +1,6 @@
 import com.sun.net.httpserver.HttpServer;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
-
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
@@ -36,30 +35,31 @@ public class SENAWeb {
 
     public static void main(String[] args) throws Exception {
         usuarios.add(new Usuario("Admin", "admin@sena.com", "123456", "Administrador"));
+        usuarios.add(new Usuario("Luís Felipe", "luis@email.com", "Sena123", "Hóspede"));
         
         imoveis.add(new Imovel("Apartamento Moderno - Ipanema", "2 quartos • WiFi", "2.500", "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=800&q=80"));
         imoveis.add(new Imovel("Studio Aconchegante - Vila Madalena", "1 quarto • Pet-friendly", "1.800", "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&q=80"));
+        imoveis.add(new Imovel("Casa Familiar - Leblon", "3 quartos • Garagem", "4.200", "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80"));
 
         HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
 
-        // 1. ROTAS DO FRONT-END
         server.createContext("/", ex -> {
             String rota = ex.getRequestURI().getPath();
-            if (rota.equals("/")) rota = "/telainicial.html";
+            if (rota.equals("/")) rota = "/login.html"; 
             rotearArquivo(ex, "frontend" + rota);
         });
 
-        // 2. ROTAS DA API
         server.createContext("/api/imoveis", ex -> responderJSON(ex, gerarJsonImoveis(), 200));
         server.createContext("/api/login", new LoginHandler());
         server.createContext("/api/cadastro", new CadastroHandler());
+        server.createContext("/api/cadastro-imovel", new CadastroImovelHandler());
         server.createContext("/api/chat", new ChatHandler());
 
         server.setExecutor(null);
         server.start();
         System.out.println("======================================================");
-        System.out.println(" SERVIDOR SENA ONLINE (Chatbot e Cadastro Ativos) ");
-        System.out.println(" Acesse: http://localhost:8080/telainicial.html");
+        System.out.println("            SERVIDOR SENA ONLINE INICIADO             ");
+        System.out.println("       Acesse: http://localhost:8080/login.html       ");
         System.out.println("======================================================");
     }
 
@@ -67,7 +67,8 @@ public class SENAWeb {
         Path path = Paths.get(caminhoArquivo);
         if (Files.exists(path)) {
             byte[] bytes = Files.readAllBytes(path);
-            String contentType = caminhoArquivo.endsWith(".css") ? "text/css" : "text/html";
+            String contentType = "text/html";
+            if (caminhoArquivo.endsWith(".css")) contentType = "text/css";
             exchange.getResponseHeaders().set("Content-Type", contentType + "; charset=UTF-8");
             exchange.sendResponseHeaders(200, bytes.length);
             try (OutputStream os = exchange.getResponseBody()) { os.write(bytes); }
@@ -94,9 +95,13 @@ public class SENAWeb {
         public void handle(HttpExchange exchange) throws IOException {
             if ("POST".equals(exchange.getRequestMethod())) {
                 String[] p = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8).split(":");
-                boolean achou = usuarios.stream().anyMatch(u -> u.email.equalsIgnoreCase(p[0]) && u.senha.equals(p[1]));
-                if(achou) responderJSON(exchange, "MSG04: Login com sucesso!", 200);
-                else responderJSON(exchange, "MSG03: Credenciais inválidas.", 401);
+                Usuario userLogado = usuarios.stream().filter(u -> u.email.equalsIgnoreCase(p[0]) && u.senha.equals(p[1])).findFirst().orElse(null);
+                if(userLogado != null) {
+                    String json = String.format("{\"msg\": \"Login com sucesso!\", \"tipo\": \"%s\"}", userLogado.tipo);
+                    responderJSON(exchange, json, 200);
+                } else {
+                    responderJSON(exchange, "{\"msg\": \"Credenciais inválidas.\"}", 401);
+                }
             }
         }
     }
@@ -107,7 +112,18 @@ public class SENAWeb {
             if ("POST".equals(exchange.getRequestMethod())) {
                 String[] p = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8).split(":");
                 usuarios.add(new Usuario(p[0], p[1], p[2], p[3]));
-                responderJSON(exchange, "MSG01: Cadastro realizado com sucesso!", 200);
+                responderJSON(exchange, "{\"msg\": \"Cadastro realizado com sucesso!\"}", 200);
+            }
+        }
+    }
+
+    static class CadastroImovelHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            if ("POST".equals(exchange.getRequestMethod())) {
+                String[] p = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8).split(":");
+                imoveis.add(new Imovel(p[0], p[1], p[2], p[3]));
+                responderJSON(exchange, "{\"msg\": \"Imóvel cadastrado com sucesso!\"}", 200);
             }
         }
     }
@@ -118,16 +134,9 @@ public class SENAWeb {
             if ("POST".equals(exchange.getRequestMethod())) {
                 String msg = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8).toLowerCase();
                 String resposta = "Desculpe, não entendi. Pergunte sobre segurança, cadastro ou senha.";
-                
-                if (msg.contains("segurança") || msg.contains("bairro")) 
-                    resposta = "No SENA, priorizamos a segurança! Veja as notas de iluminação e segurança de rua clicando em 'Explorar Bairros'.";
-                else if (msg.contains("cadastro") || msg.contains("conta")) 
-                    resposta = "Para criar uma conta, clique em 'Cadastrar' no menu superior. Pode ser Hóspede ou Anfitrião.";
-                else if (msg.contains("senha") || msg.contains("esqueci")) 
-                    resposta = "Vá à tela de Login e clique em 'Esqueceu a senha' para recuperar o seu acesso.";
-                else if (msg.contains("ola") || msg.contains("olá") || msg.contains("oi")) 
-                    resposta = "Olá! Como posso ajudar na sua busca por um imóvel seguro hoje?";
-
+                if (msg.contains("segurança") || msg.contains("bairro")) resposta = "No SENA, priorizamos a segurança! Veja as notas de iluminação na aba Bairros.";
+                else if (msg.contains("cadastro") || msg.contains("conta")) resposta = "Clique em 'Cadastrar' no menu superior.";
+                else if (msg.contains("ola") || msg.contains("olá") || msg.contains("oi")) resposta = "Olá! Como posso ajudar na sua busca por um imóvel hoje?";
                 responderJSON(exchange, resposta, 200);
             }
         }

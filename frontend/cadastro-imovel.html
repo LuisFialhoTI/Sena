@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Cadastro Imóvel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="registramento.css">
+</head>
+<body>
+    <main class="container">
+        <form id="formImovel">
+            <div class="header"><h1>Cadastrar Imóvel</h1></div>
+            <div class="input-group"><label>Título</label><div class="input-box"><input type="text" id="titulo" required></div></div>
+            <div class="input-group"><label>Localização (ex: 2 quartos)</label><div class="input-box"><input type="text" id="localizacao" required></div></div>
+            <div class="input-group"><label>Preço</label><div class="input-box"><input type="text" id="preco" required></div></div>
+            <div class="input-group"><label>Link Imagem</label><div class="input-box"><input type="text" id="imagem" required></div></div>
+            <button type="submit" class="btn-login">Publicar</button>
+            <div class="register-link" style="margin-top: 20px;"><p><a href="telainicial.html">Voltar ao início</a></p></div>
+        </form>
+    </main>
+    <script>
+        if (localStorage.getItem('tipoContaSena') === 'Hóspede') { alert("Acesso negado."); window.location.href = "telainicial.html"; }
+        document.getElementById('formImovel').addEventListener('submit', function(e) {
+            e.preventDefault();
+            fetch('/api/cadastro-imovel', { method: 'POST', body: `${document.getElementById('titulo').value}:${document.getElementById('localizacao').value}:${document.getElementById('preco').value}:${document.getElementById('imagem').value}` })
+            .then(res => res.json()).then(data => { alert(data.msg); window.location.href = "telainicial.html"; });
+        });
+    </script>
+</body>
+</html>

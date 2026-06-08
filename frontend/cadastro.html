@@ -1,95 +1,95 @@
-!DOCTYPE html
-html lang=pt-br
-head
-    meta charset=UTF-8
-    titleSENA - Criar Contatitle
-    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.5.0cssall.min.css
-    link rel=stylesheet href=registramento.css
-head
-body
-    main class=container
-        form id=formCadastro
-            div class=header
-                div class=logo-boxSdiv
-                h1SENAh1
-                pCrie sua contap
-            div
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SENA - Criar Conta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="registramento.css">
+</head>
+<body>
+    <main class="container">
+        <form id="formCadastro">
+            <div class="header">
+                <div class="logo-box">S</div>
+                <h1>SENA</h1>
+                <p>Crie sua conta</p>
+            </div>
 
-            div class=input-group
-                labelNome completo span style=colorredspanlabel
-                div class=input-box
-                    i class=fa-solid fa-useri
-                    input type=text id=nome required
-                div
-            div
+            <div class="input-group">
+                <label>Nome completo <span style="color:red">*</span></label>
+                <div class="input-box">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" id="nome" required>
+                </div>
+            </div>
 
-            div class=input-group
-                labelE-mail span style=colorredspanlabel
-                div class=input-box
-                    i class=fa-solid fa-envelopei
-                    input type=email id=email required
-                div
-            div
+            <div class="input-group">
+                <label>E-mail <span style="color:red">*</span></label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
 
-            div class=account-type-group
-                labelTipo de Contalabel
-                label class=radio-card
-                    input type=radio name=tipoConta value=Hóspede checked
-                    div class=card-content
-                        div class=radio-circlediv
-                        div class=text
-                            strongHóspedestrong
-                            spanBuscar moradiasspan
-                        div
-                    div
-                label
-                label class=radio-card
-                    input type=radio name=tipoConta value=Anfitrião
-                    div class=card-content
-                        div class=radio-circlediv
-                        div class=text
-                            strongAnfitriãostrong
-                            spanAnunciar moradiasspan
-                        div
-                    div
-                label
-            div
+            <div class="account-type-group">
+                <label>Tipo de Conta</label>
+                <label class="radio-card">
+                    <input type="radio" name="tipoConta" value="Hóspede" checked>
+                    <div class="card-content">
+                        <div class="radio-circle"></div>
+                        <div class="text">
+                            <strong>Hóspede</strong>
+                            <span>Buscar moradias</span>
+                        </div>
+                    </div>
+                </label>
+                <label class="radio-card">
+                    <input type="radio" name="tipoConta" value="Anfitrião">
+                    <div class="card-content">
+                        <div class="radio-circle"></div>
+                        <div class="text">
+                            <strong>Anfitrião</strong>
+                            <span>Anunciar moradias</span>
+                        </div>
+                    </div>
+                </label>
+            </div>
 
-            div class=input-group
-                labelSenha span style=colorredspanlabel
-                div class=input-box
-                    i class=fa-solid fa-locki
-                    input type=password id=senha required
-                div
-                span class=help-textMínimo 6 caracteresspan
-            div
+            <div class="input-group">
+                <label>Senha <span style="color:red">*</span></label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="senha" required>
+                </div>
+                <span class="help-text">Mínimo 6 caracteres</span>
+            </div>
 
-            button type=submit class=btn-login style=margin-top 15px;Criar Contabutton
+            <button type="submit" class="btn-login" style="margin-top: 15px;">Criar Conta</button>
 
-            div class=register-link style=margin-top 20px;
-                pJá tem conta a href=login.htmlFaça loginap
-            div
-        form
-    main
+            <div class="register-link" style="margin-top: 20px;">
+                <p>Já tem conta? <a href="login.html">Faça login</a></p>
+            </div>
+        </form>
+    </main>
 
-    script
+    <script>
         document.getElementById('formCadastro').addEventListener('submit', function(e) {
             e.preventDefault();
             const nome = document.getElementById('nome').value;
             const email = document.getElementById('email').value;
             const senha = document.getElementById('senha').value;
-            const tipoConta = document.querySelector('input[name=tipoConta]checked').value;
+            const tipoConta = document.querySelector('input[name="tipoConta"]:checked').value;
             
-            fetch('apicadastro', {
-                method 'POST',
-                body `${nome}${email}${senha}${tipoConta}`
+            fetch('/api/cadastro', {
+                method: 'POST',
+                body: `${nome}:${email}:${senha}:${tipoConta}`
             })
-            .then(res = res.text().then(msg = ({status res.status, msg msg})))
-            .then(data = {
+            .then(res => res.text().then(msg => ({status: res.status, msg: msg})))
+            .then(data => {
                 alert(data.msg);
-                if(data.status === 200) window.location.href = login.html;
+                if(data.status === 200) window.location.href = "login.html";
             });
         });
-    script
-body
-html
+    </script>
+</body>
+</html>
