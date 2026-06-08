@@ -1,0 +1,198 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.logo {
+    color: #1b7a6b;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.menu-central a {
+    text-decoration: none;
+    color: #64748b;
+    margin: 0 15px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.btn-nav-active {
+    background-color: #1b7a6b;
+    color: white !important;
+    padding: 8px 18px;
+    border-radius: 8px;
+}
+
+.auth-group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.btn-entrar {
+    text-decoration: none;
+    color: #1e293b;
+    font-size: 14px;
+}
+
+.btn-cadastrar {
+    background-color: #1b7a6b;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hero-header {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #f0fdf9;
+}
+
+.hero-header h1 {
+    font-size: 38px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.hero-header h1 span {
+    color: #1b7a6b;
+}
+
+.hero-header p {
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    padding: 60px 5%;
+}
+
+.grid-bairros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 35px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.card-image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+    background-color: #cbd5e1;
+}
+
+.img-vila-mariana { background-image: url('https://images.unsplash.com/photo-1543482335-97931367092c?q=80&w=1000&auto=format&fit=crop'); }
+.img-pinheiros { background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop'); }
+.img-jardins { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop'); }
+
+.card-content {
+    padding: 25px;
+}
+
+.location {
+    font-size: 13px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.stats { margin-bottom: 25px; }
+
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.progress-bg {
+    flex: 1;
+    height: 8px;
+    background-color: #f1f5f9;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.progress-bar.green { background-color: #1b7a6b; }
+.progress-bar.orange { background-color: #f97316; }
+
+.w-85 { width: 85%; }
+.w-90 { width: 90%; }
+.w-80 { width: 80%; }
+.w-73 { width: 73%; }
+.w-93 { width: 93%; }
+.w-88 { width: 88%; }
+.w-82 { width: 82%; }
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 20px;
+}
+
+.btn-detalhes {
+    background-color: #1b7a6b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.bottom-info {
+    background-color: #f0fdf9;
+    padding: 60px 5%;
+    text-align: center;
+}
+
+.info-badges {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.badge i {
+    color: #1b7a6b;
+    margin-right: 8px;
+}

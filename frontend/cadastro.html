@@ -1,0 +1,95 @@
+!DOCTYPE html
+html lang=pt-br
+head
+    meta charset=UTF-8
+    titleSENA - Criar Contatitle
+    link rel=stylesheet href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.5.0cssall.min.css
+    link rel=stylesheet href=registramento.css
+head
+body
+    main class=container
+        form id=formCadastro
+            div class=header
+                div class=logo-boxSdiv
+                h1SENAh1
+                pCrie sua contap
+            div
+
+            div class=input-group
+                labelNome completo span style=colorredspanlabel
+                div class=input-box
+                    i class=fa-solid fa-useri
+                    input type=text id=nome required
+                div
+            div
+
+            div class=input-group
+                labelE-mail span style=colorredspanlabel
+                div class=input-box
+                    i class=fa-solid fa-envelopei
+                    input type=email id=email required
+                div
+            div
+
+            div class=account-type-group
+                labelTipo de Contalabel
+                label class=radio-card
+                    input type=radio name=tipoConta value=Hóspede checked
+                    div class=card-content
+                        div class=radio-circlediv
+                        div class=text
+                            strongHóspedestrong
+                            spanBuscar moradiasspan
+                        div
+                    div
+                label
+                label class=radio-card
+                    input type=radio name=tipoConta value=Anfitrião
+                    div class=card-content
+                        div class=radio-circlediv
+                        div class=text
+                            strongAnfitriãostrong
+                            spanAnunciar moradiasspan
+                        div
+                    div
+                label
+            div
+
+            div class=input-group
+                labelSenha span style=colorredspanlabel
+                div class=input-box
+                    i class=fa-solid fa-locki
+                    input type=password id=senha required
+                div
+                span class=help-textMínimo 6 caracteresspan
+            div
+
+            button type=submit class=btn-login style=margin-top 15px;Criar Contabutton
+
+            div class=register-link style=margin-top 20px;
+                pJá tem conta a href=login.htmlFaça loginap
+            div
+        form
+    main
+
+    script
+        document.getElementById('formCadastro').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const senha = document.getElementById('senha').value;
+            const tipoConta = document.querySelector('input[name=tipoConta]checked').value;
+            
+            fetch('apicadastro', {
+                method 'POST',
+                body `${nome}${email}${senha}${tipoConta}`
+            })
+            .then(res = res.text().then(msg = ({status res.status, msg msg})))
+            .then(data = {
+                alert(data.msg);
+                if(data.status === 200) window.location.href = login.html;
+            });
+        });
+    script
+body
+html
