@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>SENA - Avaliar Moradia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="bairros.css">
+    <link rel="stylesheet" href="avaliar-moradia.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Sena</div>
+        <nav class="menu-central">
+            <a href="telainicial.html" id="nav-buscar">Buscar Moradia</a>
+            <a href="bairros.html" id="nav-explorar">Explorar Bairros</a>
+            <a href="cadastro-imovel.html" id="link-cadastro-imovel">Cadastro de imóvel</a>
+            <a href="sobrenos.html" id="nav-sobre">Sobre nós</a>
+        </nav>
+        <div class="auth-group" id="navbar-auth-section">
+            <!-- Dynamic authentication section -->
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-container">
+            <div class="form-header-title">
+                <h1>Avaliar Moradia</h1>
+                <p>Compartilhe sua experiência para ajudar outros usuários a escolher com mais segurança.</p>
+            </div>
+
+            <!-- Property card info block -->
+            <div class="property-info-card" id="prop-info-card">
+                <div class="loading-prop">
+                    <i class="fa-solid fa-spinner fa-spin"></i> Carregando dados da moradia...
+                </div>
+            </div>
+
+            <form id="evaluationForm" class="evaluation-form">
+                <div class="ratings-section">
+                    <h3>Avaliações por Categoria</h3>
+                    <div class="ratings-grid">
+                        <!-- 1. Geral -->
+                        <div class="rating-row">
+                            <label>Avaliação Geral</label>
+                            <div class="star-rating" data-category="geral">
+                                <i class="fa-regular fa-star" data-val="1"></i>
+                                <i class="fa-regular fa-star" data-val="2"></i>
+                                <i class="fa-regular fa-star" data-val="3"></i>
+                                <i class="fa-regular fa-star" data-val="4"></i>
+                                <i class="fa-regular fa-star" data-val="5"></i>
+                                <input type="hidden" name="geral" id="val-geral" value="5">
+                            </div>
+                        </div>
+
+                        <!-- 2. Segurança do Bairro -->
+                        <div class="rating-row">
+                            <label>Segurança do Bairro</label>
+                            <div class="star-rating" data-category="seg-bairro">
+                                <i class="fa-regular fa-star" data-val="1"></i>
+                                <i class="fa-regular fa-star" data-val="2"></i>
+                                <i class="fa-regular fa-star" data-val="3"></i>
+                                <i class="fa-regular fa-star" data-val="4"></i>
+                                <i class="fa-regular fa-star" data-val="5"></i>
+                                <input type="hidden" name="seg-bairro" id="val-seg-bairro" value="5">
+                            </div>
+                        </div>
+
+                        <!-- 3. Segurança da Rua -->
+                        <div class="rating-row">
+                            <label>Segurança da Rua</label>
+                            <div class="star-rating" data-category="seg-rua">
+                                <i class="fa-regular fa-star" data-val="1"></i>
+                                <i class="fa-regular fa-star" data-val="2"></i>
+                                <i class="fa-regular fa-star" data-val="3"></i>
+                                <i class="fa-regular fa-star" data-val="4"></i>
+                                <i class="fa-regular fa-star" data-val="5"></i>
+                                <input type="hidden" name="seg-rua" id="val-seg-rua" value="5">
+                            </div>
+                        </div>
+
+                        <!-- 4. Comodidade -->
+                        <div class="rating-row">
+                            <label>Comodidade</label>
+                            <div class="star-rating" data-category="comodidade">
+                                <i class="fa-regular fa-star" data-val="1"></i>
+                                <i class="fa-regular fa-star" data-val="2"></i>
+                                <i class="fa-regular fa-star" data-val="3"></i>
+                                <i class="fa-regular fa-star" data-val="4"></i>
+                                <i class="fa-regular fa-star" data-val="5"></i>
+                                <input type="hidden" name="comodidade" id="val-comodidade" value="5">
+                            </div>
+                        </div>
+
+                        <!-- 5. Localização -->
+                        <div class="rating-row">
+                            <label>Localização</label>
+                            <div class="star-rating" data-category="localizacao">
+                                <i class="fa-regular fa-star" data-val="1"></i>
+                                <i class="fa-regular fa-star" data-val="2"></i>
+                                <i class="fa-regular fa-star" data-val="3"></i>
+                                <i class="fa-regular fa-star" data-val="4"></i>
+                                <i class="fa-regular fa-star" data-val="5"></i>
+                                <input type="hidden" name="localizacao" id="val-localizacao" value="5">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="highlights-section">
+                    <h3>Destaques da Vizinhança</h3>
+                    <p>Selecione as tags que melhor descrevem a região.</p>
+                    <div class="tags-checkbox-grid">
+                        <label class="tag-checkbox-btn">
+                            <input type="checkbox" name="tag-highlight" value="Rua bem iluminada">
+                            <span>Rua bem iluminada</span>
+                        </label>
+                        <label class="tag-checkbox-btn">
+                            <input type="checkbox" name="tag-highlight" value="Região segura">
+                            <span>Região segura</span>
+                        </label>
+                        <label class="tag-checkbox-btn">
+                            <input type="checkbox" name="tag-highlight" value="Pouco movimento">
+                            <span>Pouco movimento</span>
+                        </label>
+                        <label class="tag-checkbox-btn">
+                            <input type="checkbox" name="tag-highlight" value="Comércio próximo">
+                            <span>Comércio próximo</span>
+                        </label>
+                        <label class="tag-checkbox-btn">
+                            <input type="checkbox" name="tag-highlight" value="Transporte acessível">
+                            <span>Transporte acessível</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="comment-section">
+                    <h3>Comentário Adicional</h3>
+                    <p>Conte mais sobre os pontos positivos e negativos.</p>
+                    <textarea id="comentario" rows="5" placeholder="Descreva sua experiência com a moradia e a vizinhança..." required></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" onclick="voltarParaDetalhes()">Cancelar</button>
+                    <button type="submit" class="btn-submit">Enviar Avaliação <i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bottom-copyright">
+        <p>&copy; 2026 Sena. Todos os direitos reservados. <a href="#">Privacidade</a> <a href="#">Termos</a> <a href="#">Contato</a></p>
+    </footer>
+
+    <script>
+        // DYNAMIC NAVBAR AUTH
+        const tipoConta = localStorage.getItem('tipoContaSena');
+        const authSection = document.getElementById('navbar-auth-section');
+        
+        if (tipoConta === 'Hóspede') {
+            const linkCadImovel = document.getElementById('link-cadastro-imovel');
+            if (linkCadImovel) linkCadImovel.style.display = 'none';
+        }
+
+        if (tipoConta) {
+            authSection.innerHTML = `
+                <div class="user-profile-header">
+                    <button class="nav-icon-btn" title="Mensagens"><i class="fa-regular fa-comment-dots"></i></button>
+                    <button class="nav-icon-btn" title="Notificações"><i class="fa-regular fa-bell"></i></button>
+                    <div class="profile-block" onclick="logout()">
+                        <div class="profile-text">
+                            <span class="title">Minha Conta</span>
+                            <span class="role">${tipoConta === 'Anfitrião' ? 'Anfitrião' : 'Inquilino'}</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Avatar" class="avatar">
+                    </div>
+                </div>
+            `;
+        } else {
+            authSection.innerHTML = `
+                <a href="login.html" class="btn-entrar">Entrar</a>
+                <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
+            `;
+        }
+
+        function logout() {
+            if (confirm("Deseja sair da sua conta?")) {
+                localStorage.removeItem('tipoContaSena');
+                window.location.href = "login.html";
+            }
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const imovelId = urlParams.get('id') || "0";
+
+        // Fetch property information to load the header card
+        fetch('/api/imoveis')
+            .then(res => res.json())
+            .then(imoveis => {
+                let imovel = imoveis.find(i => String(i.id) === imovelId);
+                if (!imovel && imoveis[parseInt(imovelId)]) {
+                    imovel = imoveis[parseInt(imovelId)];
+                }
+
+                if (!imovel) {
+                    alert("Moradia inválida.");
+                    window.location.href = "telainicial.html";
+                    return;
+                }
+
+                // Render header property info card
+                const endereco = imovel.endereco || "Rua das Flores, 123 - Pinheiros, SP";
+                const detalhes = imovel.detalhes || "2 Quartos • 1 Vaga • 65m²";
+                
+                document.getElementById('prop-info-card').innerHTML = `
+                    <div class="prop-card-flex">
+                        <img src="${imovel.imagem}" alt="${imovel.titulo}" class="prop-img">
+                        <div class="prop-details">
+                            <span class="badge-verificada"><i class="fa-solid fa-shield-halved"></i> Moradia Verificada</span>
+                            <h2>${imovel.titulo}</h2>
+                            <p class="address"><i class="fa-solid fa-location-dot"></i> ${endereco}</p>
+                            <p class="specs">${detalhes}</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+        function voltarParaDetalhes() {
+            window.location.href = `detalhes-imovel.html?id=${imovelId}`;
+        }
+
+        // STAR INTERACTIVE LOGIC
+        document.querySelectorAll('.star-rating').forEach(container => {
+            const stars = container.querySelectorAll('i');
+            const input = container.querySelector('input');
+            const category = container.getAttribute('data-category');
+
+            // Initialize 5 stars as default
+            highlightStars(stars, 5);
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', () => {
+                    const hoverVal = parseInt(star.getAttribute('data-val'));
+                    highlightStars(stars, hoverVal);
+                });
+
+                star.addEventListener('mouseout', () => {
+                    const currentVal = parseInt(input.value);
+                    highlightStars(stars, currentVal);
+                });
+
+                star.addEventListener('click', () => {
+                    const clickVal = star.getAttribute('data-val');
+                    input.value = clickVal;
+                    highlightStars(stars, clickVal);
+                });
+            });
+        });
+
+        function highlightStars(stars, val) {
+            stars.forEach(star => {
+                const starVal = parseInt(star.getAttribute('data-val'));
+                if (starVal <= val) {
+                    star.className = 'fa-solid fa-star';
+                } else {
+                    star.className = 'fa-regular fa-star';
+                }
+            });
+        }
+
+        // FORM SUBMISSION
+        document.getElementById('evaluationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            if (!tipoConta) {
+                alert("Você precisa estar logado para enviar uma avaliação.");
+                window.location.href = "login.html";
+                return;
+            }
+
+            const valGeral = document.getElementById('val-geral').value;
+            const valBairro = document.getElementById('val-seg-bairro').value;
+            const valRua = document.getElementById('val-seg-rua').value;
+            const valComod = document.getElementById('val-comodidade').value;
+            const valLoc = document.getElementById('val-localizacao').value;
+
+            // Collect selected tag highlights
+            const selectedTags = [];
+            document.querySelectorAll('input[name="tag-highlight"]:checked').forEach(cb => {
+                selectedTags.push(cb.value);
+            });
+            const tagsList = selectedTags.length > 0 ? selectedTags.join(',') : 'Região segura';
+
+            const comentarioText = document.getElementById('comentario').value.trim();
+
+            // Construct payload: id:valGeral:valBairro:valRua:valComod:valLoc:tags:comment
+            const payload = `${imovelId}:${valGeral}:${valBairro}:${valRua}:${valComod}:${valLoc}:${tagsList}:${comentarioText}`;
+
+            fetch('/api/avaliar', {
+                method: 'POST',
+                body: payload
+            })
+            .then(res => res.json())
+            .then(data => {
+                alert(data.msg || "Avaliação enviada com sucesso!");
+                voltarParaDetalhes();
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Erro ao enviar avaliação. Certifique-se de que o servidor esteja online.");
+            });
+        });
+    </script>
+</body>
+</html>

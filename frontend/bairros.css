@@ -1,3 +1,9 @@
+/* ==========================================
+   SENA - GLOBAL DESIGN SYSTEM & BAIRROS STYLE
+   ========================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,37 +13,57 @@
 
 body {
     background-color: #f8fafc;
-    color: #1e293b;
+    color: #334155;
+    overflow-x: hidden;
 }
 
+/* NAVBAR STYLE */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
     background-color: #ffffff;
-    border-bottom: 1px solid #edf2f7;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.02);
 }
 
 .logo {
-    color: #1b7a6b;
+    color: #0cb177;
     font-size: 24px;
     font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+}
+
+.menu-central {
+    display: flex;
+    align-items: center;
 }
 
 .menu-central a {
     text-decoration: none;
     color: #64748b;
-    margin: 0 15px;
+    margin: 0 10px;
     font-size: 14px;
     font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
-.btn-nav-active {
-    background-color: #1b7a6b;
+.menu-central a:hover {
+    color: #1e293b;
+    background-color: #f1f5f9;
+}
+
+.menu-central a.btn-nav-active {
+    background-color: #0cb177;
     color: white !important;
-    padding: 8px 18px;
-    border-radius: 8px;
+    font-weight: 600;
 }
 
 .auth-group {
@@ -50,91 +76,221 @@ body {
     text-decoration: none;
     color: #1e293b;
     font-size: 14px;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.btn-entrar:hover {
+    color: #0cb177;
 }
 
 .btn-cadastrar {
-    background-color: #1b7a6b;
-    color: white;
+    background-color: #0cb177;
+    color: white !important;
     padding: 10px 20px;
     border-radius: 8px;
     text-decoration: none;
     font-size: 14px;
     font-weight: 600;
+    transition: background-color 0.2s ease;
 }
 
+.btn-cadastrar:hover {
+    background-color: #099262;
+}
+
+/* Dynamic User Header CSS */
+.user-profile-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-icon-btn {
+    background: none;
+    border: none;
+    color: #64748b;
+    font-size: 18px;
+    cursor: pointer;
+    position: relative;
+    padding: 6px;
+    border-radius: 50%;
+    transition: 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-icon-btn:hover {
+    color: #0cb177;
+    background-color: #f1f5f9;
+}
+
+.nav-icon-btn .dot {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 7px;
+    height: 7px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 1px solid #ffffff;
+}
+
+.profile-block {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 20px;
+    transition: background-color 0.2s ease;
+}
+
+.profile-block:hover {
+    background-color: #f1f5f9;
+}
+
+.profile-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.profile-text .title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.profile-text .role {
+    font-size: 11px;
+    color: #64748b;
+}
+
+.profile-block .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1.5px solid #0cb177;
+}
+
+/* HERO HEADER STYLE */
 .hero-header {
     text-align: center;
     padding: 60px 20px;
-    background-color: #f0fdf9;
+    background: linear-gradient(180deg, #f0fdf9 0%, #ffffff 100%);
+    border-bottom: 1px solid #f0fdf4;
 }
 
 .hero-header h1 {
-    font-size: 38px;
+    font-size: 36px;
     font-weight: 700;
-    margin-bottom: 10px;
+    color: #1e293b;
+    margin-bottom: 12px;
 }
 
 .hero-header h1 span {
-    color: #1b7a6b;
+    color: #0cb177;
 }
 
 .hero-header p {
     color: #64748b;
-    max-width: 600px;
+    font-size: 16px;
+    max-width: 650px;
     margin: 0 auto;
+    line-height: 1.5;
 }
 
+/* MAIN CONTAINER & GRID */
 .container {
-    padding: 60px 5%;
+    padding: 50px 5%;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .grid-bairros {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 35px;
-    max-width: 1200px;
-    margin: 0 auto;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
 }
 
+/* NEIGHBORHOOD CARDS */
 .card {
     background: #ffffff;
     border-radius: 16px;
     border: 1px solid #e2e8f0;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 }
 
 .card-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     background-size: cover;
     background-position: center;
-    background-color: #cbd5e1;
+    background-color: #e2e8f0;
 }
-
-.img-vila-mariana { background-image: url('https://images.unsplash.com/photo-1543482335-97931367092c?q=80&w=1000&auto=format&fit=crop'); }
-.img-pinheiros { background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop'); }
-.img-jardins { background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop'); }
 
 .card-content {
     padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-content h3 {
+    font-size: 20px;
+    color: #1e293b;
+    font-weight: 600;
+    margin-bottom: 6px;
 }
 
 .location {
     font-size: 13px;
     color: #94a3b8;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.stats { margin-bottom: 25px; }
+.stats {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
 .stat-row {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 12px;
     font-size: 12px;
     font-weight: 600;
+    color: #475569;
+}
+
+.stat-row span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 120px;
+    flex-shrink: 0;
+}
+
+.stat-row span i {
+    font-size: 14px;
+    color: #64748b;
 }
 
 .progress-bg {
@@ -142,6 +298,7 @@ body {
     height: 8px;
     background-color: #f1f5f9;
     border-radius: 10px;
+    overflow: hidden;
 }
 
 .progress-bar {
@@ -149,16 +306,62 @@ body {
     border-radius: 10px;
 }
 
-.progress-bar.green { background-color: #1b7a6b; }
-.progress-bar.orange { background-color: #f97316; }
+.progress-bar.green {
+    background-color: #0cb177;
+}
 
-.w-85 { width: 85%; }
-.w-90 { width: 90%; }
-.w-80 { width: 80%; }
-.w-73 { width: 73%; }
-.w-93 { width: 93%; }
-.w-88 { width: 88%; }
-.w-82 { width: 82%; }
+.progress-bar.orange {
+    background-color: #f97316;
+}
+
+.stat-row .val {
+    font-size: 13px;
+    font-weight: 700;
+    color: #1e293b;
+    width: 25px;
+    text-align: right;
+}
+
+/* TAGS */
+.tags-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag-badge {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+/* Color palettes for tags */
+.tag-badge.green {
+    background-color: #e6fcf5;
+    color: #099262;
+}
+
+.tag-badge.blue {
+    background-color: #e7f5ff;
+    color: #1c7ed6;
+}
+
+.tag-badge.purple {
+    background-color: #f3f0ff;
+    color: #7048e8;
+}
+
+.tag-badge.yellow {
+    background-color: #fff9db;
+    color: #f59f00;
+}
+
+.tag-badge.pink {
+    background-color: #fff0f6;
+    color: #d6336c;
+}
 
 .card-footer {
     display: flex;
@@ -166,33 +369,250 @@ body {
     align-items: center;
     border-top: 1px solid #f1f5f9;
     padding-top: 20px;
+    margin-top: auto;
+}
+
+.reviews {
+    font-size: 13px;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 500;
 }
 
 .btn-detalhes {
-    background-color: #1b7a6b;
+    background-color: #0cb177;
     color: white;
     border: none;
     padding: 10px 20px;
     border-radius: 8px;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.2s ease;
 }
 
+.btn-detalhes:hover {
+    background-color: #099262;
+}
+
+/* BOTTOM SECTION - SEGURANÇA EM PRIMEIRO LUGAR */
 .bottom-info {
     background-color: #f0fdf9;
     padding: 60px 5%;
     text-align: center;
+    border-top: 1px solid #e6f9f3;
+}
+
+.bottom-info h2 {
+    font-size: 28px;
+    color: #1e293b;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.bottom-info p {
+    color: #64748b;
+    max-width: 600px;
+    margin: 0 auto 40px;
+    font-size: 15px;
+    line-height: 1.5;
 }
 
 .info-badges {
     display: flex;
     justify-content: center;
-    gap: 40px;
-    margin-top: 30px;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
     flex-wrap: wrap;
 }
 
-.badge i {
-    color: #1b7a6b;
-    margin-right: 8px;
+.badge-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 30px;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+    border: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.badge-card:hover {
+    transform: translateY(-5px);
+}
+
+.badge-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.badge-card:nth-child(1) .badge-icon {
+    background-color: #e6fcf5;
+    color: #0cb177;
+}
+
+.badge-card:nth-child(2) .badge-icon {
+    background-color: #fff9db;
+    color: #f59f00;
+}
+
+.badge-card:nth-child(3) .badge-icon {
+    background-color: #e7f5ff;
+    color: #1c7ed6;
+}
+
+.badge-card h4 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 10px;
+}
+
+.badge-card p {
+    font-size: 13px;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px;
+    }
+    .menu-central {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+    .menu-central a {
+        margin: 0;
+        padding: 6px 12px;
+    }
+    .auth-group {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* ==========================================
+   NEIGHBORHOOD MODAL STYLE
+   ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    display: none;
+}
+
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 750px;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 25px;
+    border-bottom: 1px solid #e2e8f0;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 10;
+}
+
+.modal-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #1e293b;
+}
+
+.btn-close-modal {
+    transition: color 0.2s, transform 0.2s;
+}
+.btn-close-modal:hover {
+    color: #0cb177 !important;
+    transform: scale(1.1);
+}
+
+.modal-body {
+    padding: 25px;
+}
+
+.bairro-desc {
+    font-size: 0.95rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.modal-stats-section, .modal-tags-section, .modal-imoveis-section, .modal-comments-section {
+    margin-bottom: 30px;
+}
+
+.modal-stats-section h3, .modal-tags-section h3, .modal-imoveis-section h3, .modal-comments-section h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+/* Scrollbar styling for modal */
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f5f9;
+    border-radius: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 8px;
+}
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
 }

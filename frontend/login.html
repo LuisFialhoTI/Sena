@@ -10,22 +10,42 @@
     <main class="container">
         <form id="formLogin">
             <div class="header">
-                <div class="logo-box">S</div>
-                <h1>SENA</h1>
+                <div class="logo-wrapper">
+                    <div class="logo-box">S</div>
+                    <span class="logo-text">SENA</span>
+                </div>
                 <p>Bem-vindo de volta</p>
             </div>
             <div class="input-group">
-                <label>Email</label>
-                <div class="input-box"><i class="fa-solid fa-envelope"></i><input type="email" id="email" required></div>
+                <label>E-mail</label>
+                <div class="input-box">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" id="email" placeholder="seu@email.com" required>
+                </div>
             </div>
             <div class="input-group">
-                <label>Senha</label>
-                <div class="input-box"><i class="fa-solid fa-lock"></i><input type="password" id="password" required></div>
+                <div class="label-row">
+                    <label>Senha</label>
+                    <a href="recsenha.html" class="forgot-link">Esqueceu a senha?</a>
+                </div>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
             </div>
-            <a href="recsenha.html" class="forgot-link">Esqueceu a senha?</a>
             <button type="submit" class="btn-login">Entrar</button>
-            <div class="register-link" style="margin-top:20px;">
+            
+            <div class="divider">
+                <span>ou</span>
+            </div>
+
+            <div class="register-link">
                 <p>Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+            </div>
+
+            <div class="security-badge-footer">
+                <i class="fa-solid fa-shield-halved"></i>
+                <span>Conexão segura e criptografada</span>
             </div>
         </form>
     </main>

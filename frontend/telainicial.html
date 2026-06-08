@@ -9,21 +9,94 @@
     <link rel="stylesheet" href="telainicial.css">
 </head>
 <body>
+    
     <header class="navbar">
-        <div class="logo">SENA</div>
+        <div class="logo">Sena</div>
         <nav class="menu-central">
-            <a href="telainicial.html" class="btn-nav-active">Buscar Moradia</a>
-            <a href="bairros.html">Explorar Bairros</a>
+            <a href="telainicial.html" class="btn-nav-active" id="nav-buscar">Buscar Moradia</a>
+            <a href="bairros.html" id="nav-explorar">Explorar Bairros</a>
             <a href="cadastro-imovel.html" id="link-cadastro-imovel">Cadastro de imóvel</a>
-            <a href="sobrenos.html">Sobre nós</a>
+            <a href="sobrenos.html" id="nav-sobre">Sobre nós</a>
         </nav>
-        <div class="auth-group"><a href="login.html" class="btn-cadastrar" style="background-color: #64748b;">Sair</a></div>
+        <div class="auth-group" id="navbar-auth-section">
+            <!-- Dynamic authentication section -->
+        </div>
     </header>
-    <section class="hero-header">
-        <h1>Moradias <span>Disponíveis</span></h1>
-        <p>Encontre o local ideal com segurança garantida.</p>
+
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Encontre seu lar com <span class="highlight">segurança</span></h1>
+            <p class="subtitle">Alugue propriedades com informações detalhadas sobre segurança do bairro, iluminação e condições das ruas.</p>
+            
+            <div class="search-container">
+                <div class="search-box">
+                    <div class="search-field">
+                        <label><i class="fa-solid fa-location-dot"></i> Localização</label>
+                        <input type="text" id="search-localizacao" placeholder="Onde você quer ficar?">
+                    </div>
+                    <div class="search-divider"></div>
+                    <div class="search-field">
+                        <label><i class="fa-solid fa-money-bill-wave"></i> Preço máximo</label>
+                        <input type="text" id="search-preco" placeholder="Qualquer preço">
+                    </div>
+                    <div class="search-divider"></div>
+                    <div class="search-field">
+                        <label><i class="fa-solid fa-shield-halved"></i> Nível de Segurança</label>
+                        <input type="text" id="search-seguranca" placeholder="Qualquer nível">
+                    </div>
+                    <button class="btn-buscar"><i class="fa-solid fa-magnifying-glass"></i> Buscar</button>
+                </div>
+                
+                <div class="search-filters">
+                    <div class="filter-dropdown">
+                        <span>Qualquer preço</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                    <div class="filter-dropdown">
+                        <span>Qualquer nível</span> <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
-    <main class="container"><div class="grid-bairros" id="lista-imoveis"></div></main>
+
+    <main class="container">
+        <div class="section-header">
+            <h2>Propriedades em Destaque</h2>
+            <p>Descubra acomodações verificadas com informações detalhadas sobre segurança e qualidade do bairro.</p>
+        </div>
+
+        <div class="grid-bairros" id="lista-imoveis">
+            <!-- Property cards rendered dynamically -->
+        </div>
+
+        <div class="ver-mais-container">
+            <button class="btn-ver-mais">Ver Mais Propriedades</button>
+        </div>
+    </main>
+
+    <footer class="bottom-info">
+        <h2>Segurança em Primeiro Lugar</h2>
+        <p>Nossa plataforma oferece informações detalhadas sobre segurança para que você tome a melhor decisão.</p>
+        
+        <div class="info-badges">
+            <div class="badge-card">
+                <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4>Avaliação de Segurança</h4>
+                <p>Classificação detalhada da segurança do bairro baseada em dados reais e avaliações de usuários.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h4>Iluminação das Ruas</h4>
+                <p>Informações sobre a qualidade da iluminação pública nas proximidades da propriedade.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i class="fa-solid fa-road"></i></div>
+                <h4>Condições das Ruas</h4>
+                <p>Avaliação das condições de infraestrutura e manutenção das vias públicas da região.</p>
+            </div>
+        </div>
+    </footer>
+
     <div class="chat-container">
         <button class="chat-btn" id="chatBtn" onclick="toggleChat()"><i class="fa-solid fa-comments"></i> Suporte Sena</button>
         <div class="chat-window hidden" id="chatWindow">
@@ -35,14 +108,125 @@
             </div>
         </div>
     </div>
+
     <script>
-        if (localStorage.getItem('tipoContaSena') === 'Hóspede') document.getElementById('link-cadastro-imovel').style.display = 'none';
-        fetch('/api/imoveis').then(r => r.json()).then(imoveis => {
-            imoveis.forEach(i => {
-                document.getElementById('lista-imoveis').innerHTML += `<div class="card"><div class="card-image" style="background-image: url('${i.imagem}')"></div><div class="card-content"><h3>${i.titulo}</h3><p class="location"><i class="fa-solid fa-location-dot"></i> ${i.localizacao}</p><div class="card-footer"><span style="font-weight:bold; color:#1b7a6b;">R$ ${i.preco}/mês</span><button class="btn-detalhes">Detalhes</button></div></div></div>`;
+        // DYNAMIC NAVBAR AUTH
+        const tipoConta = localStorage.getItem('tipoContaSena');
+        const authSection = document.getElementById('navbar-auth-section');
+        
+        if (tipoConta === 'Hóspede') {
+            const linkCadImovel = document.getElementById('link-cadastro-imovel');
+            if (linkCadImovel) linkCadImovel.style.display = 'none';
+        }
+
+        if (tipoConta) {
+            authSection.innerHTML = `
+                <div class="user-profile-header">
+                    <button class="nav-icon-btn" title="Mensagens"><i class="fa-regular fa-comment-dots"></i><span class="dot"></span></button>
+                    <button class="nav-icon-btn" title="Notificações"><i class="fa-regular fa-bell"></i></button>
+                    <div class="profile-block" onclick="logout()">
+                        <div class="profile-text">
+                            <span class="title">Minha Conta</span>
+                            <span class="role">${tipoConta === 'Anfitrião' ? 'Anfitrião' : 'Inquilino'}</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Avatar" class="avatar">
+                    </div>
+                </div>
+            `;
+        } else {
+            authSection.innerHTML = `
+                <a href="login.html" class="btn-entrar">Entrar</a>
+                <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
+            `;
+        }
+
+        function logout() {
+            if (confirm("Deseja sair da sua conta?")) {
+                localStorage.removeItem('tipoContaSena');
+                window.location.href = "login.html";
+            }
+        }
+
+        // BADGE HELPERS FOR PROPERTIES
+        function getIconForBadge(badge) {
+            const b = badge.toLowerCase();
+            if (b.includes("iluminação")) return "fa-lightbulb";
+            if (b.includes("rua")) return "fa-road";
+            if (b.includes("excelente") || b.includes("ótima") || b.includes("perfeita") || b.includes("boa")) return "fa-circle-check";
+            if (b.includes("regular") || b.includes("moderada")) return "fa-circle-exclamation";
+            return "fa-triangle-exclamation";
+        }
+
+        function getClassForBadge(badge) {
+            const b = badge.toLowerCase();
+            if (b.includes("iluminação")) return "lightbulb";
+            if (b.includes("rua")) return "road";
+            if (b.includes("excelente") || b.includes("ótima") || b.includes("perfeita") || b.includes("boa")) return "check";
+            if (b.includes("regular") || b.includes("moderada")) return "exclamation";
+            return "danger";
+        }
+
+        function getStarsHTML(estrelas) {
+            const num = parseFloat(estrelas);
+            let html = '';
+            for (let i = 1; i <= 5; i++) {
+                if (num >= i) {
+                    html += '<i class="fa-solid fa-star"></i>';
+                } else if (num >= i - 0.5) {
+                    html += '<i class="fa-solid fa-star-half-stroke"></i>';
+                } else {
+                    html += '<i class="fa-regular fa-star"></i>';
+                }
+            }
+            return html;
+        }
+
+        // FETCH PROPERTIES
+        fetch('/api/imoveis')
+            .then(r => r.json())
+            .then(imoveis => {
+                const container = document.getElementById('lista-imoveis');
+                container.innerHTML = '';
+                imoveis.forEach((i, index) => {
+                    const rating = i.rating || "8.0";
+                    const detalhes = i.detalhes || i.localizacao; // Fallback
+                    const listBadges = (i.badges || "Boa iluminação").split(',');
+                    const estrelas = i.estrelas || "4.0";
+
+                    let badgesHTML = '';
+                    listBadges.forEach(b => {
+                        badgesHTML += `<span class="badge-tag ${getClassForBadge(b)}"><i class="fa-solid ${getIconForBadge(b)}"></i> ${b}</span>`;
+                    });
+
+                    container.innerHTML += `
+                        <div class="card" onclick="window.location.href='detalhes-imovel.html?id=${i.id || index}'" style="cursor: pointer;">
+                            <div class="card-image-container">
+                                <div class="card-image" style="background-image: url('${i.imagem}')"></div>
+                                <div class="safety-badge"><i class="fa-solid fa-shield-halved"></i> ${rating}</div>
+                            </div>
+                            <div class="card-content">
+                                <h3>${i.titulo}</h3>
+                                <p class="details">${detalhes}</p>
+                                <div class="badges-row">
+                                    ${badgesHTML}
+                                </div>
+                                <div class="card-footer">
+                                    <span class="price">R$ ${i.preco}<span>/mês</span></span>
+                                    <div class="stars-rating">
+                                        ${getStarsHTML(estrelas)}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
             });
-        });
-        function toggleChat() { document.getElementById('chatWindow').classList.toggle('hidden'); document.getElementById('chatBtn').classList.toggle('hidden'); }
+
+        // CHATBOT WIDGET
+        function toggleChat() { 
+            document.getElementById('chatWindow').classList.toggle('hidden'); 
+            document.getElementById('chatBtn').classList.toggle('hidden'); 
+        }
         function handleEnter(e) { if (e.key === 'Enter') enviarMensagem(); }
         function enviarMensagem() {
             const input = document.getElementById('chatInput');

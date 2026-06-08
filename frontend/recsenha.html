@@ -10,22 +10,24 @@
     <main class="container">
         <form id="formRecuperar">
             <div class="header">
-                <div class="logo-box">S</div>
-                <h1>Recuperar Senha</h1>
+                <div class="logo-wrapper">
+                    <div class="logo-box">S</div>
+                    <span class="logo-text">Recuperar Senha</span>
+                </div>
                 <p>Insira seu email para receber um link de recuperação</p>
             </div>
 
             <div class="input-group">
-                <label for="email">Email</label>
+                <label for="email">Email <span style="color:red">*</span></label>
                 <div class="input-box">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" placeholder="seuemail@mail.com" required>
                 </div>
             </div>
 
-            <button type="submit" class="btn-login">Enviar Link de Recuperação</button>
+            <button type="submit" class="btn-login">Enviar Link de Recuperação <i class="fa-solid fa-paper-plane"></i></button>
 
-            <div class="register-link" style="margin-top: 20px;">
+            <div class="register-link" style="margin-top: 25px;">
                 <p>
                     <a href="login.html">
                         <i class="fa-solid fa-arrow-left"></i> Voltar para Login

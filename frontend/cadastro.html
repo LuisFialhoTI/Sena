@@ -10,8 +10,10 @@
     <main class="container">
         <form id="formCadastro">
             <div class="header">
-                <div class="logo-box">S</div>
-                <h1>SENA</h1>
+                <div class="logo-wrapper">
+                    <div class="logo-box">S</div>
+                    <span class="logo-text">SENA</span>
+                </div>
                 <p>Crie sua conta</p>
             </div>
 
@@ -19,7 +21,7 @@
                 <label>Nome completo <span style="color:red">*</span></label>
                 <div class="input-box">
                     <i class="fa-solid fa-user"></i>
-                    <input type="text" id="nome" required>
+                    <input type="text" id="nome" placeholder="Nome completo" required>
                 </div>
             </div>
 
@@ -27,41 +29,51 @@
                 <label>E-mail <span style="color:red">*</span></label>
                 <div class="input-box">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" id="email" required>
+                    <input type="email" id="email" placeholder="E-mail" required>
                 </div>
             </div>
 
             <div class="account-type-group">
                 <label>Tipo de Conta</label>
-                <label class="radio-card">
-                    <input type="radio" name="tipoConta" value="Hóspede" checked>
-                    <div class="card-content">
-                        <div class="radio-circle"></div>
-                        <div class="text">
-                            <strong>Hóspede</strong>
-                            <span>Buscar moradias</span>
+                <div class="radio-cards-container">
+                    <label class="radio-card">
+                        <input type="radio" name="tipoConta" value="Hóspede" checked>
+                        <div class="card-content">
+                            <div class="radio-circle"></div>
+                            <div class="text">
+                                <strong>Hóspede</strong>
+                                <span>Buscar moradias</span>
+                            </div>
                         </div>
-                    </div>
-                </label>
-                <label class="radio-card">
-                    <input type="radio" name="tipoConta" value="Anfitrião">
-                    <div class="card-content">
-                        <div class="radio-circle"></div>
-                        <div class="text">
-                            <strong>Anfitrião</strong>
-                            <span>Anunciar moradias</span>
+                    </label>
+                    <label class="radio-card">
+                        <input type="radio" name="tipoConta" value="Anfitrião">
+                        <div class="card-content">
+                            <div class="radio-circle"></div>
+                            <div class="text">
+                                <strong>Anfitrião</strong>
+                                <span>Anunciar moradias</span>
+                            </div>
                         </div>
-                    </div>
-                </label>
+                    </label>
+                </div>
             </div>
 
             <div class="input-group">
                 <label>Senha <span style="color:red">*</span></label>
                 <div class="input-box">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="senha" required>
+                    <input type="password" id="senha" placeholder="Senha" required>
                 </div>
                 <span class="help-text">Mínimo 6 caracteres</span>
+            </div>
+
+            <div class="input-group">
+                <label>Confirmar Senha <span style="color:red">*</span></label>
+                <div class="input-box">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" id="confirmarSenha" placeholder="Confirmar Senha" required>
+                </div>
             </div>
 
             <button type="submit" class="btn-login" style="margin-top: 15px;">Criar Conta</button>
@@ -78,8 +90,19 @@
             const nome = document.getElementById('nome').value;
             const email = document.getElementById('email').value;
             const senha = document.getElementById('senha').value;
+            const confirmarSenha = document.getElementById('confirmarSenha').value;
             const tipoConta = document.querySelector('input[name="tipoConta"]:checked').value;
             
+            if (senha.length < 6) {
+                alert("A senha deve ter no mínimo 6 caracteres.");
+                return;
+            }
+
+            if (senha !== confirmarSenha) {
+                alert("As senhas não coincidem!");
+                return;
+            }
+
             fetch('/api/cadastro', {
                 method: 'POST',
                 body: `${nome}:${email}:${senha}:${tipoConta}`

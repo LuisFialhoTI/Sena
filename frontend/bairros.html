@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
     <title>SENA - Explorar Bairros</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -9,16 +10,15 @@
 <body>
 
     <header class="navbar">
-        <div class="logo">SENA</div>
+        <div class="logo">Sena</div>
         <nav class="menu-central">
-            <a href="telainicial.html">Buscar Moradia</a>
-            <a href="#" class="btn-nav-active">Explorar Bairros</a>
-            <a href="#">Cadastro de imóvel</a>
-            <a href="#">Sobre nós</a>
+            <a href="telainicial.html" id="nav-buscar">Buscar Moradia</a>
+            <a href="bairros.html" class="btn-nav-active" id="nav-explorar">Explorar Bairros</a>
+            <a href="cadastro-imovel.html" id="link-cadastro-imovel">Cadastro de imóvel</a>
+            <a href="sobrenos.html" id="nav-sobre">Sobre nós</a>
         </nav>
-        <div class="auth-group">
-            <a href="telainicial.html" class="btn-entrar">Entrar</a>
-            <a href="telainicial.html" class="btn-cadastrar">Cadastrar</a>
+        <div class="auth-group" id="navbar-auth-section">
+            <!-- Dynamic authentication section -->
         </div>
     </header>
 
@@ -30,8 +30,9 @@
     <main class="container">
         <div class="grid-bairros">
             
+            <!-- CARD 1: Vila Mariana -->
             <div class="card">
-                <div class="card-image img-vila-mariana"></div>
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1543482335-97931367092c?q=80&w=1000&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <h3>Vila Mariana</h3>
                     <p class="location"><i class="fa-solid fa-location-dot"></i> São Paulo</p>
@@ -39,82 +40,220 @@
                     <div class="stats">
                         <div class="stat-row">
                             <span><i class="fa-solid fa-shield-halved"></i> Segurança</span>
-                            <div class="progress-bg"><div class="progress-bar green w-85"></div></div>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 85%;"></div></div>
                             <span class="val">8.5</span>
                         </div>
                         <div class="stat-row">
                             <span><i class="fa-solid fa-lightbulb"></i> Infraestrutura</span>
-                            <div class="progress-bg"><div class="progress-bar orange w-90"></div></div>
+                            <div class="progress-bg"><div class="progress-bar orange" style="width: 90%;"></div></div>
                             <span class="val">9.0</span>
                         </div>
                         <div class="stat-row">
-                            <span><i class="fa-solid fa-check"></i> Qualidade de Vida</span>
-                            <div class="progress-bg"><div class="progress-bar green w-80"></div></div>
+                            <span><i class="fa-solid fa-square-check"></i> Qualidade de Vida</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="style=width: 80%; width: 80%;"></div></div>
                             <span class="val">8.0</span>
                         </div>
                     </div>
 
+                    <div class="tags-row">
+                        <span class="tag-badge green">Próximo a delegacia</span>
+                        <span class="tag-badge blue">Bom transporte público</span>
+                        <span class="tag-badge green">Áreas verdes</span>
+                    </div>
+
                     <div class="card-footer">
-                        <span class="reviews">1.1k Avaliações <i class="fa-solid fa-users"></i></span>
-                        <button class="btn-detalhes">Ver Detalhes</button>
+                        <span class="reviews">156 avaliações da <i class="fa-solid fa-users"></i></span>
+                        <button class="btn-detalhes" onclick="abrirModalBairro('Vila Mariana', '8.5', '9.0', '8.0', 'Próximo a delegacia,Bom transporte público,Áreas verdes')">Ver detalhes</button>
                     </div>
                 </div>
             </div>
 
+            <!-- CARD 2: Pinheiros -->
             <div class="card">
-                <div class="card-image img-pinheiros"></div>
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1000&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <h3>Pinheiros</h3>
                     <p class="location"><i class="fa-solid fa-location-dot"></i> São Paulo</p>
+                    
                     <div class="stats">
                         <div class="stat-row">
                             <span><i class="fa-solid fa-shield-halved"></i> Segurança</span>
-                            <div class="progress-bg"><div class="progress-bar orange w-73"></div></div>
-                            <span class="val">7.3</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 75%;"></div></div>
+                            <span class="val">7.5</span>
                         </div>
                         <div class="stat-row">
                             <span><i class="fa-solid fa-lightbulb"></i> Infraestrutura</span>
-                            <div class="progress-bg"><div class="progress-bar green w-93"></div></div>
-                            <span class="val">9.3</span>
+                            <div class="progress-bg"><div class="progress-bar orange" style="width: 95%;"></div></div>
+                            <span class="val">9.5</span>
                         </div>
                         <div class="stat-row">
-                            <span><i class="fa-solid fa-check"></i> Qualidade de Vida</span>
-                            <div class="progress-bg"><div class="progress-bar green w-88"></div></div>
+                            <span><i class="fa-solid fa-square-check"></i> Qualidade de Vida</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 88%;"></div></div>
                             <span class="val">8.8</span>
                         </div>
                     </div>
+
+                    <div class="tags-row">
+                        <span class="tag-badge purple">Vida noturna</span>
+                        <span class="tag-badge blue">Bom transporte público</span>
+                        <span class="tag-badge yellow">Comércios próximos</span>
+                    </div>
+
                     <div class="card-footer">
-                        <span class="reviews">2.3k Avaliações <i class="fa-solid fa-users"></i></span>
-                        <button class="btn-detalhes">Ver Detalhes</button>
+                        <span class="reviews">203 avaliações da <i class="fa-solid fa-users"></i></span>
+                        <button class="btn-detalhes" onclick="abrirModalBairro('Pinheiros', '7.5', '9.5', '8.8', 'Vida noturna,Bom transporte público,Comércios próximos')">Ver detalhes</button>
                     </div>
                 </div>
             </div>
 
+            <!-- CARD 3: Jardins -->
             <div class="card">
-                <div class="card-image img-jardins"></div>
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1000&auto=format&fit=crop');"></div>
                 <div class="card-content">
                     <h3>Jardins</h3>
                     <p class="location"><i class="fa-solid fa-location-dot"></i> São Paulo</p>
+                    
                     <div class="stats">
                         <div class="stat-row">
                             <span><i class="fa-solid fa-shield-halved"></i> Segurança</span>
-                            <div class="progress-bg"><div class="progress-bar green w-85"></div></div>
-                            <span class="val">8.5</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 95%;"></div></div>
+                            <span class="val">9.5</span>
                         </div>
                         <div class="stat-row">
                             <span><i class="fa-solid fa-lightbulb"></i> Infraestrutura</span>
-                            <div class="progress-bg"><div class="progress-bar green w-82"></div></div>
-                            <span class="val">8.2</span>
+                            <div class="progress-bg"><div class="progress-bar orange" style="width: 92%;"></div></div>
+                            <span class="val">9.2</span>
                         </div>
                         <div class="stat-row">
-                            <span><i class="fa-solid fa-check"></i> Qualidade de Vida</span>
-                            <div class="progress-bg"><div class="progress-bar green w-93"></div></div>
+                            <span><i class="fa-solid fa-square-check"></i> Qualidade de Vida</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 93%;"></div></div>
                             <span class="val">9.3</span>
                         </div>
                     </div>
+
+                    <div class="tags-row">
+                        <span class="tag-badge green">Próximo a delegacia</span>
+                        <span class="tag-badge green">Áreas verdes</span>
+                        <span class="tag-badge blue">Shopping centers</span>
+                    </div>
+
                     <div class="card-footer">
-                        <span class="reviews">813 Avaliações <i class="fa-solid fa-users"></i></span>
-                        <button class="btn-detalhes">Ver Detalhes</button>
+                        <span class="reviews">89 avaliações da <i class="fa-solid fa-users"></i></span>
+                        <button class="btn-detalhes" onclick="abrirModalBairro('Jardins', '9.5', '9.2', '9.3', 'Próximo a delegacia,Áreas verdes,Shopping centers')">Ver detalhes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 4: Moema -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?q=80&w=1000&auto=format&fit=crop');"></div>
+                <div class="card-content">
+                    <h3>Moema</h3>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> São Paulo</p>
+                    
+                    <div class="stats">
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-shield-halved"></i> Segurança</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 88%;"></div></div>
+                            <span class="val">8.8</span>
+                        </div>
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-lightbulb"></i> Infraestrutura</span>
+                            <div class="progress-bg"><div class="progress-bar orange" style="width: 8.5%; width: 85%;"></div></div>
+                            <span class="val">8.5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-square-check"></i> Qualidade de Vida</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 90%;"></div></div>
+                            <span class="val">9.0</span>
+                        </div>
+                    </div>
+
+                    <div class="tags-row">
+                        <span class="tag-badge green">Áreas verdes</span>
+                        <span class="tag-badge pink">Família</span>
+                        <span class="tag-badge blue">Bom transporte público</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="reviews">124 avaliações da <i class="fa-solid fa-users"></i></span>
+                        <button class="btn-detalhes" onclick="abrirModalBairro('Moema', '8.8', '8.5', '9.0', 'Áreas verdes,Família,Bom transporte público')">Ver detalhes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 5: Itaim Bibi -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?q=80&w=1000&auto=format&fit=crop');"></div>
+                <div class="card-content">
+                    <h3>Itaim Bibi</h3>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> São Paulo</p>
+                    
+                    <div class="stats">
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-shield-halved"></i> Segurança</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 82%;"></div></div>
+                            <span class="val">8.2</span>
+                        </div>
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-lightbulb"></i> Infraestrutura</span>
+                            <div class="progress-bg"><div class="progress-bar orange" style="width: 98%;"></div></div>
+                            <span class="val">9.8</span>
+                        </div>
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-square-check"></i> Qualidade de Vida</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 78%;"></div></div>
+                            <span class="val">7.8</span>
+                        </div>
+                    </div>
+
+                    <div class="tags-row">
+                        <span class="tag-badge blue">Centro empresarial</span>
+                        <span class="tag-badge yellow">Comércios próximos</span>
+                        <span class="tag-badge blue">Bom transporte público</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="reviews">178 avaliações da <i class="fa-solid fa-users"></i></span>
+                        <button class="btn-detalhes" onclick="abrirModalBairro('Itaim Bibi', '8.2', '9.8', '7.8', 'Centro empresarial,Comércios próximos,Bom transporte público')">Ver detalhes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CARD 6: Beira Mar -->
+            <div class="card">
+                <div class="card-image" style="background-image: url('https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=1000&auto=format&fit=crop');"></div>
+                <div class="card-content">
+                    <h3>Beira Mar</h3>
+                    <p class="location"><i class="fa-solid fa-location-dot"></i> São Paulo</p>
+                    
+                    <div class="stats">
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-shield-halved"></i> Segurança</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 95%;"></div></div>
+                            <span class="val">9.5</span>
+                        </div>
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-lightbulb"></i> Infraestrutura</span>
+                            <div class="progress-bg"><div class="progress-bar orange" style="width: 92%;"></div></div>
+                            <span class="val">9.2</span>
+                        </div>
+                        <div class="stat-row">
+                            <span><i class="fa-solid fa-square-check"></i> Qualidade de Vida</span>
+                            <div class="progress-bg"><div class="progress-bar green" style="width: 93%;"></div></div>
+                            <span class="val">9.3</span>
+                        </div>
+                    </div>
+
+                    <div class="tags-row">
+                        <span class="tag-badge green">Próximo a delegacia</span>
+                        <span class="tag-badge green">Áreas verdes</span>
+                        <span class="tag-badge blue">Shopping centers</span>
+                    </div>
+
+                    <div class="card-footer">
+                        <span class="reviews">29 avaliações da <i class="fa-solid fa-users"></i></span>
+                        <button class="btn-detalhes" onclick="abrirModalBairro('Beira Mar', '9.5', '9.2', '9.3', 'Próximo a delegacia,Áreas verdes,Shopping centers')">Ver detalhes</button>
                     </div>
                 </div>
             </div>
@@ -123,14 +262,223 @@
     </main>
 
     <footer class="bottom-info">
-        <h3>Segurança em Primeiro Lugar</h3>
+        <h2>Segurança em Primeiro Lugar</h2>
         <p>Nossa plataforma oferece informações detalhadas sobre segurança para que você tome a melhor decisão.</p>
+        
         <div class="info-badges">
-            <div class="badge"><i class="fa-solid fa-shield-halved"></i> Avaliação de Segurança</div>
-            <div class="badge"><i class="fa-solid fa-lightbulb"></i> Iluminação das Ruas</div>
-            <div class="badge"><i class="fa-solid fa-road"></i> Condições das Ruas</div>
+            <div class="badge-card">
+                <div class="badge-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h4>Avaliação de Segurança</h4>
+                <p>Classificação detalhada da segurança do bairro baseada em dados reais e avaliações de usuários.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                <h4>Iluminação das Ruas</h4>
+                <p>Informações sobre a qualidade da iluminação pública nas proximidades da propriedade.</p>
+            </div>
+            <div class="badge-card">
+                <div class="badge-icon"><i class="fa-solid fa-road"></i></div>
+                <h4>Condições das Ruas</h4>
+                <p>Avaliação das condições de infraestrutura e manutenção das vias públicas da região.</p>
+            </div>
         </div>
     </footer>
 
+    <script>
+        // DYNAMIC NAVBAR AUTH
+        const tipoConta = localStorage.getItem('tipoContaSena');
+        const authSection = document.getElementById('navbar-auth-section');
+        
+        if (tipoConta === 'Hóspede') {
+            const linkCadImovel = document.getElementById('link-cadastro-imovel');
+            if (linkCadImovel) linkCadImovel.style.display = 'none';
+        }
+
+        if (tipoConta) {
+            authSection.innerHTML = `
+                <div class="user-profile-header">
+                    <button class="nav-icon-btn" title="Mensagens"><i class="fa-regular fa-comment-dots"></i><span class="dot"></span></button>
+                    <button class="nav-icon-btn" title="Notificações"><i class="fa-regular fa-bell"></i></button>
+                    <div class="profile-block" onclick="logout()">
+                        <div class="profile-text">
+                            <span class="title">Minha Conta</span>
+                            <span class="role">${tipoConta === 'Anfitrião' ? 'Anfitrião' : 'Inquilino'}</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&q=80" alt="Avatar" class="avatar">
+                    </div>
+                </div>
+            `;
+        } else {
+            authSection.innerHTML = `
+                <a href="login.html" class="btn-entrar">Entrar</a>
+                <a href="cadastro.html" class="btn-cadastrar">Cadastrar</a>
+            `;
+        }
+
+        function logout() {
+            if (confirm("Deseja sair da sua conta?")) {
+                localStorage.removeItem('tipoContaSena');
+                window.location.href = "login.html";
+            }
+        }
+
+        // Bairro details descriptions and mock comments
+        const descricoesBairros = {
+            'Vila Mariana': 'Bairro tradicional e residencial de classe média-alta, muito frequentado por estudantes e famílias devido à proximidade de importantes faculdades e ótimos hospitais. Oferece ruas arborizadas e excelente policiamento, sendo considerado um dos bairros mais seguros da cidade.',
+            'Pinheiros': 'Um dos bairros mais antigos e descolados de São Paulo, famoso por sua rica vida noturna, polo gastronomico inovador, galerias de arte e proximidade com grandes centros empresariais. Tem excelente acessibilidade por metrô e ciclovias.',
+            'Jardins': 'Região extremamente sofisticada e nobre. Caracteriza-se por sua segurança robusta (com grande contingente de policiamento e vigilância privada), iluminação pública exemplar, calçadas largas e alta concentração de lojas de grife e restaurantes premiados.',
+            'Moema': 'Famoso por ser plano e excelente para caminhar, Moema faz divisa com o Parque do Ibirapuera. Possui um comércio local fortíssimo onde é possível fazer tudo a pé. O policiamento comunitário e as ruas bem iluminadas garantem tranquilidade no dia a dia.',
+            'Itaim Bibi': 'Grande centro financeiro e corporativo do país. É um bairro moderno, limpo, bem sinalizado e com ótimas opções de academias, restaurantes executivos e centros comerciais. Muito seguro para pedestres durante os horários comerciais.',
+            'Beira Mar': 'Região litorânea que oferece alto padrão de vida, ótima segurança para quem gosta de caminhar à beira da praia e excelente infraestrutura residencial e comercial, unindo praticidade urbana ao bem-estar da praia.'
+        };
+
+        const comentariosBairros = {
+            'Vila Mariana': [
+                { autor: "Ana Costa", texto: "Moro aqui há 3 anos e ando a pé à noite com muita tranquilidade. A proximidade com o metrô ajuda muito." },
+                { autor: "Luís Felipe", texto: "Ótima quantidade de praças e arborização. É um bairro muito gostoso de morar com a família." }
+            ],
+            'Pinheiros': [
+                { autor: "Carlos Oliveira", texto: "A vida noturna é sensacional! Às vezes é um pouco barulhento no fim de semana, mas a conveniência de ter tudo perto compensa." }
+            ],
+            'Jardins': [
+                { autor: "Mariana Silva", texto: "As ruas são extremamente bem iluminadas e seguras. É um bairro caro, mas a qualidade de vida e segurança justificam." }
+            ],
+            'Moema': [
+                { autor: "Guilherme Lima", texto: "Excelente para quem tem pets ou filhos pequenos. Muito plano e limpo. A proximidade com o parque é incrível." }
+            ],
+            'Itaim Bibi': [
+                { autor: "Isaque Leal", texto: "Bairro agitado no horário comercial e muito seguro. Prédios corporativos modernos e ótimas opções de almoço." }
+            ],
+            'Beira Mar': [
+                { autor: "Gabriel Silva", texto: "Morar pertinho da praia com segurança de condomínio fechado. Praticamente perfeito." }
+            ]
+        };
+
+        function abrirModalBairro(nome, seg, infra, qual, tags) {
+            document.getElementById('modal-bairro-titulo').innerText = nome;
+            document.getElementById('modal-bairro-descricao').innerText = descricoesBairros[nome] || '';
+            
+            // Stats
+            document.getElementById('val-seg').innerText = seg;
+            document.getElementById('pb-seg').style.width = (parseFloat(seg)*10) + '%';
+            document.getElementById('val-infra').innerText = infra;
+            document.getElementById('pb-infra').style.width = (parseFloat(infra)*10) + '%';
+            document.getElementById('val-qual').innerText = qual;
+            document.getElementById('pb-qual').style.width = (parseFloat(qual)*10) + '%';
+            
+            // Tags
+            const tagsContainer = document.getElementById('modal-bairro-tags');
+            tagsContainer.innerHTML = '';
+            tags.split(',').forEach(t => {
+                tagsContainer.innerHTML += `<span class="tag-badge green">${t}</span>`;
+            });
+
+            // Comments
+            const commentsContainer = document.getElementById('modal-bairro-comments');
+            commentsContainer.innerHTML = '';
+            const listComm = comentariosBairros[nome] || [];
+            listComm.forEach(c => {
+                commentsContainer.innerHTML += `
+                    <div class="community-comment" style="background-color: #f7f9fb; padding: 12px; border-radius: 8px; border-left: 4px solid var(--primary-color); margin-bottom: 10px;">
+                        <strong style="color: #2d3748; display: block; margin-bottom: 4px;">${c.autor}</strong>
+                        <span style="color: #4a5568; font-style: italic;">"${c.texto}"</span>
+                    </div>
+                `;
+            });
+
+            // Show Modal
+            document.getElementById('bairroModal').classList.remove('hidden');
+
+            // Dynamic properties filtering
+            const propContainer = document.getElementById('modal-bairro-imoveis');
+            propContainer.innerHTML = '<div class="loading-imoveis" style="grid-column: 1/-1; text-align: center; color: #777; padding: 20px;"><i class="fa-solid fa-circle-notch fa-spin"></i> Buscando imóveis no bairro...</div>';
+
+            fetch('/api/imoveis')
+                .then(r => r.json())
+                .then(imoveis => {
+                    const filtered = imoveis.filter(i => 
+                        i.localizacao.toLowerCase().includes(nome.toLowerCase()) || 
+                        i.titulo.toLowerCase().includes(nome.toLowerCase()) ||
+                        (i.endereco && i.endereco.toLowerCase().includes(nome.toLowerCase()))
+                    );
+
+                    propContainer.innerHTML = '';
+                    if (filtered.length === 0) {
+                        propContainer.innerHTML = '<div class="no-imoveis-bairro" style="grid-column: 1/-1; text-align: center; color: #777; padding: 20px; font-style: italic;">Nenhuma moradia disponível cadastrada neste bairro atualmente.</div>';
+                    } else {
+                        filtered.forEach(i => {
+                            propContainer.innerHTML += `
+                                <div class="card" onclick="window.location.href='detalhes-imovel.html?id=${i.id}'" style="cursor: pointer; min-width: 250px;">
+                                    <div class="card-image" style="background-image: url('${i.imagem}'); height: 140px;"></div>
+                                    <div class="card-content" style="padding: 15px;">
+                                        <h4 style="margin: 0 0 5px 0; font-size: 1.05rem; color: #2d3748;">${i.titulo}</h4>
+                                        <p class="location" style="margin: 0 0 10px 0; font-size: 0.8rem; color: #777;"><i class="fa-solid fa-location-dot"></i> ${i.localizacao}</p>
+                                        <span class="tag-badge green" style="font-size: 0.75rem;"><i class="fa-solid fa-shield-halved"></i> ${i.rating} Segurança</span>
+                                    </div>
+                                </div>
+                            `;
+                        });
+                    }
+                })
+                .catch(err => {
+                    propContainer.innerHTML = '<div class="no-imoveis-bairro" style="grid-column: 1/-1; text-align: center; color: #777; padding: 20px;">Erro ao buscar moradias.</div>';
+                });
+        }
+
+        function fecharModalBairro() {
+            document.getElementById('bairroModal').classList.add('hidden');
+        }
+    </script>
+
+    <!-- Neighborhood Details Modal -->
+    <div id="bairroModal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-bairro-titulo" style="margin: 0;">Vila Mariana</h2>
+                <button onclick="fecharModalBairro()" class="btn-close-modal" style="background: none; border: none; font-size: 1.8rem; cursor: pointer; color: #777;">&times;</button>
+            </div>
+            <div class="modal-body" style="padding-top: 15px;">
+                <p id="modal-bairro-descricao" class="bairro-desc" style="line-height: 1.6; color: #4a5568; margin-top: 0; margin-bottom: 25px; font-size: 1rem;"></p>
+                
+                <div class="modal-stats-section" style="margin-bottom: 25px;">
+                    <h3 style="font-size: 1.15rem; margin-top: 0; margin-bottom: 15px; color: #2d3748; font-weight: 600;">Estatísticas de Segurança e Qualidade</h3>
+                    <div class="modal-stats-grid" style="display: flex; flex-direction: column; gap: 12px;">
+                        <div class="modal-stat-card" style="display: flex; align-items: center; justify-content: space-between; background-color: #f8fafc; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <span class="label" style="font-weight: 500; font-size: 0.9rem; color: #4a5568; width: 140px;"><i class="fa-solid fa-shield-halved" style="color: var(--primary-color); margin-right: 5px;"></i> Segurança</span>
+                            <div class="progress-bg" style="flex-grow: 1; margin: 0 15px; height: 8px; background-color: #e2e8f0; border-radius: 4px; overflow: hidden;"><div class="progress-bar green" id="pb-seg" style="width: 0%; height: 100%; background-color: var(--primary-color);"></div></div>
+                            <span class="val" id="val-seg" style="font-weight: 700; color: var(--primary-color); width: 30px; text-align: right;">0.0</span>
+                        </div>
+                        <div class="modal-stat-card" style="display: flex; align-items: center; justify-content: space-between; background-color: #f8fafc; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <span class="label" style="font-weight: 500; font-size: 0.9rem; color: #4a5568; width: 140px;"><i class="fa-solid fa-lightbulb" style="color: var(--primary-color); margin-right: 5px;"></i> Infraestrutura</span>
+                            <div class="progress-bg" style="flex-grow: 1; margin: 0 15px; height: 8px; background-color: #e2e8f0; border-radius: 4px; overflow: hidden;"><div class="progress-bar orange" id="pb-infra" style="width: 0%; height: 100%; background-color: var(--primary-color);"></div></div>
+                            <span class="val" id="val-infra" style="font-weight: 700; color: var(--primary-color); width: 30px; text-align: right;">0.0</span>
+                        </div>
+                        <div class="modal-stat-card" style="display: flex; align-items: center; justify-content: space-between; background-color: #f8fafc; padding: 10px 15px; border-radius: 8px; border: 1px solid var(--border-color);">
+                            <span class="label" style="font-weight: 500; font-size: 0.9rem; color: #4a5568; width: 140px;"><i class="fa-solid fa-square-check" style="color: var(--primary-color); margin-right: 5px;"></i> Qualidade de Vida</span>
+                            <div class="progress-bg" style="flex-grow: 1; margin: 0 15px; height: 8px; background-color: #e2e8f0; border-radius: 4px; overflow: hidden;"><div class="progress-bar green" id="pb-qual" style="width: 0%; height: 100%; background-color: var(--primary-color);"></div></div>
+                            <span class="val" id="val-qual" style="font-weight: 700; color: var(--primary-color); width: 30px; text-align: right;">0.0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-tags-section" style="margin-bottom: 25px;">
+                    <h3 style="font-size: 1.15rem; margin-top: 0; margin-bottom: 12px; color: #2d3748; font-weight: 600;">Tags de Destaque</h3>
+                    <div class="tags-row" id="modal-bairro-tags" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
+                </div>
+
+                <div class="modal-imoveis-section" style="margin-bottom: 25px;">
+                    <h3 style="font-size: 1.15rem; margin-top: 0; margin-bottom: 12px; color: #2d3748; font-weight: 600;">Moradias Disponíveis no Bairro</h3>
+                    <div class="grid-bairros" id="modal-bairro-imoveis" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; max-height: 250px; overflow-y: auto; padding: 5px;">
+                        <!-- dynamic properties -->
+                    </div>
+                </div>
+
+                <div class="modal-comments-section">
+                    <h3 style="font-size: 1.15rem; margin-top: 0; margin-bottom: 12px; color: #2d3748; font-weight: 600;">Avaliações da Comunidade</h3>
+                    <div class="comments-list" id="modal-bairro-comments" style="display: flex; flex-direction: column; gap: 10px;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
