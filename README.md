@@ -14,3 +14,20 @@ Busca Inteligente: Pesquisa de imóveis com foco em localização e contexto urb
 Análise do Entorno: Visualização de pontos de interesse próximos, como delegacias e transporte público.  
 Ambiente Colaborativo: Sistema de avaliações e comentários sobre bairros e moradias, incentivando a transparência.  
 Segurança: Autenticação de usuários e controle de acesso para garantir a integridade da plataforma. 
+
+## Equipe de Desenvolvimento
+
+Conheça os estudantes de Engenharia de Software responsáveis pela criação da plataforma SENA:
+
+* **Luís Felipe de Sousa Fialho** - *Desenvolvedor Full-Stack*
+  * Graduando em Engenharia de Software. Responsável pelo desenvolvimento de toda a arquitetura de backend do sistema em Java (padrão MVC, persistência JDBC com Supabase e controle de concorrência com Threads), pela lógica de controle do frontend e pela criação do painel de controle administrativo em Java Swing. Apaixonado por engenharia de sistemas, bancos de dados e desenvolvimento de aplicações robustas de ponta a ponta.
+  
+* **Isaque Caios Mota Leal** - *UX/UI Designer*
+  * Graduando em Engenharia de Software. Responsável pela concepção visual, experiência do usuário e design das interfaces do portal, garantindo um layout moderno, limpo, intuitivo e responsivo alinhado às melhores práticas de usabilidade.
+
+* **Guilherme Pinho Lima Alves** - *Analista de Dados*
+  * Graduando em Engenharia de Software. Responsável pela modelagem do banco de dados, definição do schema de dados, estruturação e integridade das tabelas no Supabase.
+
+* **Gabriel Silva** - *Product Manager*
+  * Graduando em Engenharia de Software. Responsável pela definição dos requisitos da plataforma, regras de negócio do produto, coordenação das tarefas e garantia de qualidade de entrega do software.
+
