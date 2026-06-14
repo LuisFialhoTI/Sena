@@ -46,7 +46,7 @@ public class ServerConsoleFrame extends JFrame {
     private void initComponents() {
         setLayout(new BorderLayout());
 
-        // Header Panel (Server Control)
+        // Painel de Cabeçalho (Controle do Servidor)
         JPanel pnlHeader = new JPanel(new FlowLayout(FlowLayout.LEFT, 15, 10));
         pnlHeader.setBorder(BorderFactory.createTitledBorder("Controle do Servidor Web"));
 
@@ -62,7 +62,7 @@ public class ServerConsoleFrame extends JFrame {
         pnlHeader.add(btnStop);
         pnlHeader.add(lblStatus);
 
-        // Center Panel (Logs Console)
+        // Painel Central (Console de Logs)
         txtLog = new JTextArea();
         txtLog.setEditable(false);
         txtLog.setFont(new Font("Monospaced", Font.PLAIN, 12));
@@ -71,7 +71,7 @@ public class ServerConsoleFrame extends JFrame {
         JScrollPane scrollLog = new JScrollPane(txtLog);
         scrollLog.setBorder(BorderFactory.createTitledBorder("Console de Logs (Tempo Real)"));
 
-        // Footer Panel (Database Status)
+        // Painel do Rodapé (Status do Banco de Dados)
         JPanel pnlFooter = new JPanel(new FlowLayout(FlowLayout.RIGHT, 15, 10));
         pnlFooter.setBorder(BorderFactory.createEtchedBorder());
 
@@ -86,7 +86,7 @@ public class ServerConsoleFrame extends JFrame {
         add(scrollLog, BorderLayout.CENTER);
         add(pnlFooter, BorderLayout.SOUTH);
 
-        // Action Listeners
+        // Ouvintes de Ações (Action Listeners)
         btnStart.addActionListener(e -> startServer());
         btnStop.addActionListener(e -> stopServer());
         btnTestDb.addActionListener(e -> testDatabaseConnection());
@@ -103,14 +103,14 @@ public class ServerConsoleFrame extends JFrame {
             try {
                 server = HttpServer.create(new InetSocketAddress(8080), 0);
                 
-                // Configure Controllers
+                // Configura os Controladores
                 server.createContext("/api/login", new LoginHandler());
                 server.createContext("/api/cadastro", new CadastroHandler());
                 server.createContext("/api/cadastro-imovel", new CadastroImovelHandler());
                 server.createContext("/api/chat", new ChatHandler());
                 server.createContext("/api/avaliar", new AvaliarHandler());
                 
-                // Fetch property list endpoint
+                // Endpoint para obter a lista de imóveis
                 server.createContext("/api/imoveis", ex -> {
                     try {
                         List<model.Imovel> list = new database.ImovelDAO().getAll();
@@ -132,7 +132,7 @@ public class ServerConsoleFrame extends JFrame {
                     }
                 });
 
-                // Static file routing (Fallback)
+                // Roteamento de arquivos estáticos (Fallback)
                 server.createContext("/", new StaticFileHandler());
 
                 server.setExecutor(null);
@@ -141,7 +141,7 @@ public class ServerConsoleFrame extends JFrame {
                 isServerRunning = true;
                 SwingUtilities.invokeLater(() -> {
                     lblStatus.setText("STATUS: ONLINE (Porta 8080)");
-                    lblStatus.setForeground(new Color(12, 177, 119)); // Emerald Green
+                    lblStatus.setForeground(new Color(12, 177, 119)); // Verde Esmeralda
                     btnStop.setEnabled(true);
                     System.out.println("[Servidor] Servidor HTTP iniciado com sucesso na porta 8080.");
                     System.out.println("[Servidor] Acesse: http://localhost:8080/login.html");

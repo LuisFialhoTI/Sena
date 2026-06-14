@@ -1,5 +1,5 @@
 /* ==========================================
-   SENA - GLOBAL DESIGN SYSTEM & BAIRROS STYLE
+   SENA - SISTEMA DE DESIGN GLOBAL & ESTILO DE BAIRROS
    ========================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
@@ -17,7 +17,7 @@ body {
     overflow-x: hidden;
 }
 
-/* NAVBAR STYLE */
+/* ESTILO DA NAVBAR */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -99,7 +99,7 @@ body {
     background-color: #099262;
 }
 
-/* Dynamic User Header CSS */
+/* CSS do Cabeçalho de Usuário Dinâmico */
 .user-profile-header {
     display: flex;
     align-items: center;
@@ -176,7 +176,7 @@ body {
     border: 1.5px solid #0cb177;
 }
 
-/* HERO HEADER STYLE */
+/* ESTILO DO CABEÇALHO HERO */
 .hero-header {
     text-align: center;
     padding: 60px 20px;
@@ -203,7 +203,7 @@ body {
     line-height: 1.5;
 }
 
-/* MAIN CONTAINER & GRID */
+/* CONTAINER PRINCIPAL & GRADE */
 .container {
     padding: 50px 5%;
     max-width: 1300px;
@@ -216,7 +216,7 @@ body {
     gap: 30px;
 }
 
-/* NEIGHBORHOOD CARDS */
+/* CARTÕES DE BAIRROS */
 .card {
     background: #ffffff;
     border-radius: 16px;
@@ -337,7 +337,7 @@ body {
     border-radius: 20px;
 }
 
-/* Color palettes for tags */
+/* Paletas de cores para tags */
 .tag-badge.green {
     background-color: #e6fcf5;
     color: #099262;
@@ -397,7 +397,7 @@ body {
     background-color: #099262;
 }
 
-/* BOTTOM SECTION - SEGURANÇA EM PRIMEIRO LUGAR */
+/* SEÇÃO INFERIOR - SEGURANÇA EM PRIMEIRO LUGAR */
 .bottom-info {
     background-color: #f0fdf9;
     padding: 60px 5%;
@@ -510,7 +510,7 @@ body {
 }
 
 /* ==========================================
-   NEIGHBORHOOD MODAL STYLE
+   ESTILO DO MODAL DE BAIRROS
    ========================================== */
 .modal-overlay {
     position: fixed;
@@ -518,7 +518,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -601,7 +601,7 @@ body {
     margin-bottom: 15px;
 }
 
-/* Scrollbar styling for modal */
+/* Estilização da barra de rolagem do modal */
 .modal-content::-webkit-scrollbar {
     width: 8px;
 }

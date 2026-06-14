@@ -62,7 +62,7 @@ public class DatabaseConnection {
                 connection.close();
                 System.out.println("[DatabaseConnection] Conexao fechada.");
             } catch (SQLException e) {
-                // Ignore
+                // Ignora
             } finally {
                 connection = null;
             }

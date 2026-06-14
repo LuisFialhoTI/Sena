@@ -8,11 +8,11 @@ public class Avaliacao {
     private int segurancaRua;
     private int comodidade;
     private int localizacao;
-    private String tags;        // Comma-separated (e.g. "Rua bem iluminada,Regiao segura")
+    private String tags;        // Separado por vírgulas (ex: "Rua bem iluminada,Regiao segura")
     private String comentario;
-    private String dataCriacao; // Text format for simple json serialization
+    private String dataCriacao; // Formato de texto para serialização JSON simples
 
-    // Default Constructor
+    // Construtor Padrão
     public Avaliacao(int id, int imovelId, int avaliacaoGeral, int segurancaBairro, int segurancaRua, 
                      int comodidade, int localizacao, String tags, String comentario, String dataCriacao) {
         this.id = id;
@@ -27,7 +27,7 @@ public class Avaliacao {
         this.dataCriacao = dataCriacao;
     }
 
-    // Getters and Setters
+    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 

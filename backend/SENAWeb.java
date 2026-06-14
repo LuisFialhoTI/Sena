@@ -3,7 +3,7 @@ import gui.ServerConsoleFrame;
 
 public class SENAWeb {
     public static void main(String[] args) {
-        // Check for --headless argument to run without GUI
+        // Verifica pelo argumento --headless para rodar sem interface grafica (GUI)
         boolean headless = false;
         for (String arg : args) {
             if ("--headless".equalsIgnoreCase(arg)) {
@@ -63,7 +63,7 @@ public class SENAWeb {
                 try {
                     javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
                 } catch (Exception e) {
-                    // Ignore
+                    // Ignora a exceção
                 }
                 ServerConsoleFrame frame = new ServerConsoleFrame();
                 frame.setVisible(true);

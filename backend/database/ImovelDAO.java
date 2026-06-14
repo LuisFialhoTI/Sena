@@ -122,7 +122,7 @@ public class ImovelDAO implements DAO<Imovel> {
         }
     }
 
-    // List reviews for a specific property
+    // Lista as avaliações de um imóvel específico
     public List<Avaliacao> getAvaliacoesPorImovel(int imovelId) throws DatabaseException {
         List<Avaliacao> list = new ArrayList<>();
         String sql = "SELECT id, imovel_id, avaliacao_geral, seguranca_bairro, seguranca_rua, comodidade, " +
@@ -152,7 +152,7 @@ public class ImovelDAO implements DAO<Imovel> {
         return list;
     }
 
-    // Save a new housing review
+    // Salva uma nova avaliação de moradia
     public void saveAvaliacao(Avaliacao av) throws DatabaseException {
         String sql = "INSERT INTO avaliacoes (imovel_id, avaliacao_geral, seguranca_bairro, seguranca_rua, " +
                      "comodidade, localizacao, tags, comentario) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

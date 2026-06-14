@@ -27,7 +27,7 @@ public class AvaliarHandler extends AbstractHttpHandler {
                 int localizacao = Integer.parseInt(p[5].trim());
                 String tags = p[6].trim();
                 
-                // Re-join comment if it contains colons
+                // Junta novamente o comentário se ele contiver dois-pontos
                 StringBuilder commentBuilder = new StringBuilder();
                 for (int i = 7; i < p.length; i++) {
                     if (i > 7) commentBuilder.append(":");
@@ -44,7 +44,7 @@ public class AvaliarHandler extends AbstractHttpHandler {
                 Avaliacao av = new Avaliacao(0, imovelId, avaliacaoGeral, segurancaBairro, segurancaRua, comodidade, localizacao, tags, comentario, "");
                 imovelDAO.saveAvaliacao(av);
 
-                // Trigger score recalculation on the model
+                // Dispara o recálculo da média no modelo
                 im.adicionarAvaliacao(av);
                 imovelDAO.update(im);
 

@@ -1,8 +1,8 @@
 /* ==========================================
-   SENA - TELA INICIAL (BUSCA DE MORADIA) STYLE
+   SENA - ESTILO DA TELA INICIAL (BUSCA DE MORADIA)
    ========================================== */
 
-/* HERO SECTION WITH FLOATING SEARCH BAR */
+/* SEÇÃO HERO COM BARRA DE BUSCA FLUTUANTE */
 .hero-section {
     width: 100%;
     padding: 80px 20px 100px;
@@ -38,7 +38,7 @@
     line-height: 1.6;
 }
 
-/* FLOATING SEARCH CONTAINER */
+/* CONTAINER DE BUSCA FLUTUANTE */
 .search-container {
     max-width: 850px;
     margin: 0 auto;
@@ -118,7 +118,7 @@
     background-color: #099262;
 }
 
-/* SEARCH FILTERS */
+/* FILTROS DE BUSCA */
 .search-filters {
     display: flex;
     justify-content: flex-start;
@@ -142,7 +142,7 @@
     color: #0cb177;
 }
 
-/* PROPERTIES GRID SECTION */
+/* SEÇÃO DE GRADE DE PROPRIEDADES */
 .section-header {
     text-align: center;
     margin-bottom: 45px;
@@ -162,7 +162,7 @@
     margin: 0 auto;
 }
 
-/* PROPERTY CARD STYLING */
+/* ESTILIZAÇÃO DO CARTÃO DA PROPRIEDADE */
 .card-image-container {
     position: relative;
     width: 100%;
@@ -193,7 +193,7 @@
     font-weight: 500;
 }
 
-/* PROPERTY TAGS */
+/* TAGS DA PROPRIEDADE */
 .badges-row {
     display: flex;
     flex-wrap: wrap;
@@ -211,7 +211,7 @@
     gap: 6px;
 }
 
-/* Customized colors for tags */
+/* Cores personalizadas para as tags */
 .badge-tag.lightbulb {
     background-color: #fffbeb;
     color: #d97706;
@@ -256,7 +256,7 @@
     font-size: 13px;
 }
 
-/* CENTER BUTTON UNDER GRID */
+/* BOTÃO CENTRAL ABAIXO DA GRADE */
 .ver-mais-container {
     display: flex;
     justify-content: center;
@@ -280,7 +280,7 @@
     background-color: #099262;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
     .hero-section {
         padding: 50px 15px;

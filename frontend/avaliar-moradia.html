@@ -19,7 +19,7 @@
             <a href="sobrenos.html" id="nav-sobre">Sobre nós</a>
         </nav>
         <div class="auth-group" id="navbar-auth-section">
-            <!-- Dynamic authentication section -->
+            <!-- Seção dinâmica de autenticação -->
         </div>
     </header>
 
@@ -30,7 +30,7 @@
                 <p>Compartilhe sua experiência para ajudar outros usuários a escolher com mais segurança.</p>
             </div>
 
-            <!-- Property card info block -->
+            <!-- Bloco de informações do cartão do imóvel -->
             <div class="property-info-card" id="prop-info-card">
                 <div class="loading-prop">
                     <i class="fa-solid fa-spinner fa-spin"></i> Carregando dados da moradia...
@@ -154,7 +154,7 @@
     </footer>
 
     <script>
-        // DYNAMIC NAVBAR AUTH
+        // AUTENTICAÇÃO DINÂMICA DA NAVBAR
         const tipoConta = localStorage.getItem('tipoContaSena');
         const authSection = document.getElementById('navbar-auth-section');
         
@@ -194,7 +194,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const imovelId = urlParams.get('id') || "0";
 
-        // Fetch property information to load the header card
+        // Busca as informações do imóvel para carregar o cartão do cabeçalho
         fetch('/api/imoveis')
             .then(res => res.json())
             .then(imoveis => {
@@ -209,7 +209,7 @@
                     return;
                 }
 
-                // Render header property info card
+                // Renderiza o cartão de informações do imóvel no cabeçalho
                 const endereco = imovel.endereco || "Rua das Flores, 123 - Pinheiros, SP";
                 const detalhes = imovel.detalhes || "2 Quartos • 1 Vaga • 65m²";
                 
@@ -230,13 +230,13 @@
             window.location.href = `detalhes-imovel.html?id=${imovelId}`;
         }
 
-        // STAR INTERACTIVE LOGIC
+        // LÓGICA INTERATIVA DAS ESTRELAS
         document.querySelectorAll('.star-rating').forEach(container => {
             const stars = container.querySelectorAll('i');
             const input = container.querySelector('input');
             const category = container.getAttribute('data-category');
 
-            // Initialize 5 stars as default
+            // Inicializa 5 estrelas como padrão
             highlightStars(stars, 5);
 
             stars.forEach(star => {
@@ -269,7 +269,7 @@
             });
         }
 
-        // FORM SUBMISSION
+        // ENVIO DO FORMULÁRIO
         document.getElementById('evaluationForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -285,7 +285,7 @@
             const valComod = document.getElementById('val-comodidade').value;
             const valLoc = document.getElementById('val-localizacao').value;
 
-            // Collect selected tag highlights
+            // Coleta os destaques das tags selecionadas
             const selectedTags = [];
             document.querySelectorAll('input[name="tag-highlight"]:checked').forEach(cb => {
                 selectedTags.push(cb.value);
@@ -294,7 +294,7 @@
 
             const comentarioText = document.getElementById('comentario').value.trim();
 
-            // Construct payload: id:valGeral:valBairro:valRua:valComod:valLoc:tags:comment
+            // Constrói o payload: id:valGeral:valBairro:valRua:valComod:valLoc:tags:comentario
             const payload = `${imovelId}:${valGeral}:${valBairro}:${valRua}:${valComod}:${valLoc}:${tagsList}:${comentarioText}`;
 
             fetch('/api/avaliar', {

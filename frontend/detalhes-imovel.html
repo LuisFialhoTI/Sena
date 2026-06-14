@@ -19,12 +19,12 @@
             <a href="sobrenos.html" id="nav-sobre">Sobre nós</a>
         </nav>
         <div class="auth-group" id="navbar-auth-section">
-            <!-- Dynamic authentication section -->
+            <!-- Seção dinâmica de autenticação -->
         </div>
     </header>
 
     <main class="container" id="imovel-detalhes-container">
-        <!-- Will be populated dynamically by JavaScript -->
+        <!-- Será populado dinamicamente por JavaScript -->
         <div class="loading-state">
             <i class="fa-solid fa-circle-notch fa-spin"></i> Carregando detalhes da moradia...
         </div>
@@ -62,7 +62,7 @@
         </div>
     </footer>
 
-    <!-- Chatbot widget for message support integration -->
+    <!-- Widget do chatbot para integração com suporte por mensagem -->
     <div class="chat-container">
         <button class="chat-btn" id="chatBtn" onclick="toggleChat()"><i class="fa-solid fa-comments"></i> Suporte Sena</button>
         <div class="chat-window hidden" id="chatWindow">
@@ -76,7 +76,7 @@
     </div>
 
     <script>
-        // DYNAMIC NAVBAR AUTH
+        // AUTENTICAÇÃO DINÂMICA DA NAVBAR
         const tipoConta = localStorage.getItem('tipoContaSena');
         const authSection = document.getElementById('navbar-auth-section');
         
@@ -113,14 +113,14 @@
             }
         }
 
-        // LOAD MOUNTED PROPERTY
+        // CARREGAR IMÓVEL MONTADO
         const urlParams = new URLSearchParams(window.location.search);
         const imovelId = urlParams.get('id') || "0";
 
         fetch('/api/imoveis')
             .then(res => res.json())
             .then(imoveis => {
-                // Find property by ID or use fallback index
+                // Encontra o imóvel pelo ID ou usa o índice de fallback
                 let imovel = imoveis.find(i => String(i.id) === imovelId);
                 if (!imovel && imoveis[parseInt(imovelId)]) {
                     imovel = imoveis[parseInt(imovelId)];
@@ -137,7 +137,7 @@
                     return;
                 }
 
-                // Setup default details values if empty
+                // Define valores de detalhes padrão se estiverem vazios
                 const endereco = imovel.endereco || "Rua das Flores, 234 - Centro, São Paulo - SP";
                 const descricao = imovel.descricao || "Lindo e espaçoso imóvel totalmente mobiliado e decorado de acordo com altos padrões. Excelente iluminação natural, rua silenciosa e segura em bairro com ótima infraestrutura comercial e transporte público acessível.";
                 const proprietarioName = imovel.proprietario || "João Santos";
@@ -146,13 +146,13 @@
                 const scoresList = (imovel.scores || "7.5,9.2,8.8,8.7").split(',');
                 const listTags = (imovel.badges || "Seguro,Iluminado,Boa Via,Movimentado").split(',');
                 
-                // Safety scores mapping
+                // Mapeamento dos scores de segurança
                 const scBairro = scoresList[0] || "7.5";
                 const scIlum = scoresList[1] || "9.2";
                 const scRuaEst = scoresList[2] || "8.8";
                 const scRuaSeg = scoresList[3] || "8.7";
 
-                // Generate User Reviews HTML
+                // Gera o HTML das avaliações dos usuários
                 let reviewsHTML = '';
                 if (imovel.reviews && imovel.reviews.length > 0) {
                     imovel.reviews.forEach(r => {
@@ -173,7 +173,7 @@
                         `;
                     });
                 } else {
-                    // Pre-populated default reviews
+                    // Avaliações padrão pré-populadas
                     reviewsHTML = `
                         <div class="review-card">
                             <div class="review-header">
@@ -229,13 +229,13 @@
                     `;
                 }
 
-                // Generate Tags HTML
+                // Gera o HTML das tags
                 let tagsHTML = '';
                 listTags.forEach(t => {
                     tagsHTML += `<span class="detail-tag"><i class="fa-solid fa-circle-check"></i> ${t}</span>`;
                 });
 
-                // Generate Amenities Icons HTML
+                // Gera o HTML dos ícones de comodidades
                 let amenitiesHTML = '';
                 amenitiesList.forEach(a => {
                     let icon = 'fa-check';
@@ -258,10 +258,10 @@
                     `;
                 });
 
-                // Render main details template
+                // Renderiza o template de detalhes principal
                 document.getElementById('imovel-detalhes-container').innerHTML = `
                     <div class="details-layout">
-                        <!-- Left Main Column -->
+                        <!-- Coluna Principal Esquerda -->
                         <div class="main-column">
                             <div class="image-gallery">
                                 <img src="${imovel.imagem}" alt="${imovel.titulo}" class="main-image">
@@ -338,7 +338,7 @@
                             </div>
                         </div>
 
-                        <!-- Right Sidebar Column -->
+                        <!-- Coluna da Barra Lateral Direita -->
                         <div class="sidebar-column">
                             <div class="action-card">
                                 <button class="btn-rent" onclick="alugarMoradia()"><i class="fa-solid fa-key"></i> Alugar Moradia</button>
@@ -391,7 +391,7 @@
             alert("Sua proposta de locação foi enviada com sucesso! O proprietário entrará em contato em breve.");
         }
 
-        // CHATBOT WIDGET
+        // WIDGET DO CHATBOT
         function toggleChat() { 
             document.getElementById('chatWindow').classList.toggle('hidden'); 
             document.getElementById('chatBtn').classList.toggle('hidden'); 

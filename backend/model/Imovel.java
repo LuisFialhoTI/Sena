@@ -14,11 +14,11 @@ public class Imovel {
     private String badges;
     private String estrelas;
     
-    // Additional fields for the detail view
+    // Campos adicionais para a visualização de detalhes
     private String endereco;
     private String descricao;
-    private String comodidades; // Comma-separated
-    private String scores;      // Comma-separated (e.g. "7.5,9.2,8.8,8.7")
+    private String comodidades; 
+    private String scores;      
     private String proprietario;
     
     private List<Avaliacao> avaliacoes = new ArrayList<>();
@@ -42,7 +42,7 @@ public class Imovel {
         this.proprietario = proprietario;
     }
 
-    // Getters and Setters
+    // Getters e Setters
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
@@ -107,7 +107,7 @@ public class Imovel {
         this.estrelas = String.format(java.util.Locale.US, "%.1f", mediaGeral);
         this.rating = String.format(java.util.Locale.US, "%.1f", mediaSeg);
         
-        // Also update scores string: "7.5,9.2,8.8,8.7" where the first is safety
+        // Também atualiza a string de scores: "7.5,9.2,8.8,8.7" onde o primeiro é a segurança
         String[] scs = (this.scores != null ? this.scores.split(",") : new String[]{"7.5", "9.2", "8.8", "8.7"});
         if (scs.length >= 1) {
             scs[0] = String.format(java.util.Locale.US, "%.1f", mediaSeg);
@@ -122,7 +122,7 @@ public class Imovel {
         }
         String reviewsJson = "[" + String.join(",", listAvJson) + "]";
         
-        // Escape quotes in description to prevent json parse error
+        // Escapa aspas na descrição para evitar erros de parser json
         String escapedDesc = (descricao != null) ? descricao.replace("\"", "\\\"").replace("\n", "\\n") : "";
 
         return String.format(java.util.Locale.US,

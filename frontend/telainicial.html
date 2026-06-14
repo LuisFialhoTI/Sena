@@ -19,7 +19,7 @@
             <a href="sobrenos.html" id="nav-sobre">Sobre nós</a>
         </nav>
         <div class="auth-group" id="navbar-auth-section">
-            <!-- Dynamic authentication section -->
+            <!-- Seção dinâmica de autenticação -->
         </div>
     </header>
 
@@ -66,7 +66,7 @@
         </div>
 
         <div class="grid-bairros" id="lista-imoveis">
-            <!-- Property cards rendered dynamically -->
+            <!-- Cartões de imóveis renderizados dinamicamente -->
         </div>
 
         <div class="ver-mais-container">
@@ -110,7 +110,7 @@
     </div>
 
     <script>
-        // DYNAMIC NAVBAR AUTH
+        // AUTENTICAÇÃO DINÂMICA DA NAVBAR
         const tipoConta = localStorage.getItem('tipoContaSena');
         const authSection = document.getElementById('navbar-auth-section');
         
@@ -147,7 +147,7 @@
             }
         }
 
-        // BADGE HELPERS FOR PROPERTIES
+        // AUXILIARES DE BADGES PARA PROPRIEDADES
         function getIconForBadge(badge) {
             const b = badge.toLowerCase();
             if (b.includes("iluminação")) return "fa-lightbulb";
@@ -181,7 +181,7 @@
             return html;
         }
 
-        // FETCH PROPERTIES
+        // BUSCAR PROPRIEDADES
         fetch('/api/imoveis')
             .then(r => r.json())
             .then(imoveis => {
@@ -222,7 +222,7 @@
                 });
             });
 
-        // CHATBOT WIDGET
+        // WIDGET DO CHATBOT
         function toggleChat() { 
             document.getElementById('chatWindow').classList.toggle('hidden'); 
             document.getElementById('chatBtn').classList.toggle('hidden'); 

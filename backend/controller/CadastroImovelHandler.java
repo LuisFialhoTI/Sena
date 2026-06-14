@@ -23,7 +23,7 @@ public class CadastroImovelHandler extends AbstractHttpHandler {
                 String preco = p[2].trim();
                 String imagem = p[3].trim();
 
-                // Generate full defaults for the new property details view
+                // Gera valores padrão completos para a nova visualização de detalhes do imóvel
                 String detalhes = "2 quartos • 1 banheiro • WiFi";
                 String rating = "8.0";
                 String badges = "Boa iluminação,Rua boa";
