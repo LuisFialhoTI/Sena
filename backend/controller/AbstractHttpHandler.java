@@ -51,7 +51,7 @@ public abstract class AbstractHttpHandler implements HttpHandler {
         }
     }
 
-    protected String lerBody(HttpExchange exchange) throws IOException {
-        return new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+    protected String lerCorpoRequisicao(HttpExchange conexao) throws IOException {
+        return new String(conexao.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
     }
 }

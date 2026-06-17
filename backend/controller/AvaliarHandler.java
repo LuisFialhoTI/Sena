@@ -6,57 +6,76 @@ import database.ImovelDAO;
 import model.Avaliacao;
 import model.Imovel;
 
+/**
+ * [PADRÃO MVC - CONTROLLER]
+ * Esta classe é o controlador responsável pela ação de avaliar um imóvel.
+ * Ela estende 'AbstractHttpHandler' (Herança) e sobrescreve o método 'handle' (Polimorfismo).
+ */
 public class AvaliarHandler extends AbstractHttpHandler {
+    
+    // Objeto de Acesso a Dados (Padrão DAO) para interagir com a persistência de Imóveis
     private final ImovelDAO imovelDAO = new ImovelDAO();
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
-        if ("POST".equals(exchange.getRequestMethod())) {
+    public void handle(HttpExchange conexao) throws IOException {
+        // [REQUISIÇÃO HTTP] Apenas processa se for um envio de dados via método POST
+        if ("POST".equals(conexao.getRequestMethod())) {
             try {
-                String body = lerBody(exchange);
-                String[] p = body.split(":");
-                if (p.length < 8) {
-                    responderErro(exchange, "Corpo da requisicao de avaliacao invalido.", 400);
-                    return;
-                }
-                int imovelId = Integer.parseInt(p[0].trim());
-                int avaliacaoGeral = Integer.parseInt(p[1].trim());
-                int segurancaBairro = Integer.parseInt(p[2].trim());
-                int segurancaRua = Integer.parseInt(p[3].trim());
-                int comodidade = Integer.parseInt(p[4].trim());
-                int localizacao = Integer.parseInt(p[5].trim());
-                String tags = p[6].trim();
+                // [JAVA IO] Lê o corpo de texto (payload) enviado pelo front-end
+                String corpo = lerCorpoRequisicao(conexao);
+                String[] partes = corpo.split(":");
                 
-                // Junta novamente o comentário se ele contiver dois-pontos
-                StringBuilder commentBuilder = new StringBuilder();
-                for (int i = 7; i < p.length; i++) {
-                    if (i > 7) commentBuilder.append(":");
-                    commentBuilder.append(p[i]);
+                // Valida se o formato do corpo contém os campos necessários
+                if (partes.length < 8) {
+                    responderErro(conexao, "Corpo da requisicao de avaliacao invalido.", 400);
+                    return;
                 }
-                String comentario = commentBuilder.toString().trim();
+                
+                // [CONVERSÃO DE DADOS] Converte as strings recebidas em números inteiros
+                int imovelId = Integer.parseInt(partes[0].trim());
+                int avaliacaoGeral = Integer.parseInt(partes[1].trim());
+                int segurancaBairro = Integer.parseInt(partes[2].trim());
+                int segurancaRua = Integer.parseInt(partes[3].trim());
+                int comodidade = Integer.parseInt(partes[4].trim());
+                int localizacao = Integer.parseInt(partes[5].trim());
+                String tags = partes[6].trim();
+                
+                // [STRING BUILDER] Reconstrói o texto de comentário caso o próprio comentário possua o caractere de dois-pontos
+                StringBuilder construtorComentario = new StringBuilder();
+                for (int i = 7; i < partes.length; i++) {
+                    if (i > 7) construtorComentario.append(":");
+                    construtorComentario.append(partes[i]);
+                }
+                String comentario = construtorComentario.toString().trim();
 
-                Imovel im = imovelDAO.getById(imovelId);
-                if (im == null) {
-                    responderErro(exchange, "Imovel nao encontrado.", 404);
+                // [DAO / BUSCA] Recupera o imóvel que está sendo avaliado do banco de dados
+                Imovel imovel = imovelDAO.getById(imovelId);
+                if (imovel == null) {
+                    responderErro(conexao, "Imovel nao encontrado.", 404);
                     return;
                 }
 
-                Avaliacao av = new Avaliacao(0, imovelId, avaliacaoGeral, segurancaBairro, segurancaRua, comodidade, localizacao, tags, comentario, "");
-                imovelDAO.saveAvaliacao(av);
+                // [CLASSES E OBJETOS / CONSTRUTOR] Instancia um novo objeto da classe 'Avaliacao'
+                Avaliacao avaliacao = new Avaliacao(0, imovelId, avaliacaoGeral, segurancaBairro, segurancaRua, comodidade, localizacao, tags, comentario, "");
+                imovelDAO.saveAvaliacao(avaliacao);
 
-                // Dispara o recálculo da média no modelo
-                im.adicionarAvaliacao(av);
-                imovelDAO.update(im);
+                // [POLIMORFISMO DE SOBRESCRITA / REGRAS DE NEGÓCIO]
+                // Adiciona a avaliação ao modelo 'Imovel' para recalcular as médias de notas e segurança
+                imovel.adicionarAvaliacao(avaliacao);
+                imovelDAO.update(imovel);
 
-                responderJSON(exchange, "{\"msg\": \"Avaliacao enviada com sucesso!\"}", 200);
-            } catch (NumberFormatException e) {
-                responderErro(exchange, "Formato numerico invalido nos campos de avaliacao.", 400);
-            } catch (Exception e) {
-                e.printStackTrace();
-                responderErro(exchange, "Erro ao processar avaliacao: " + e.getMessage(), 500);
+                // Retorna sucesso para o navegador do cliente em formato JSON
+                responderJSON(conexao, "{\"msg\": \"Avaliacao enviada com sucesso!\"}", 200);
+            } catch (NumberFormatException erro) {
+                // Captura especificamente erros se a nota enviada não for um número válido
+                responderErro(conexao, "Formato numerico invalido nos campos de avaliacao.", 400);
+            } catch (Exception erro) {
+                // Captura qualquer outro erro geral e exibe a pilha de chamadas no console do servidor
+                erro.printStackTrace();
+                responderErro(conexao, "Erro ao processar avaliacao: " + erro.getMessage(), 500);
             }
         } else {
-            responderErro(exchange, "Metodo nao suportado.", 405);
+            responderErro(conexao, "Metodo nao suportado.", 405);
         }
     }
 }

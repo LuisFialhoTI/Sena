@@ -9,19 +9,19 @@ public class CadastroImovelHandler extends AbstractHttpHandler {
     private final ImovelDAO imovelDAO = new ImovelDAO();
 
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
-        if ("POST".equals(exchange.getRequestMethod())) {
+    public void handle(HttpExchange conexao) throws IOException {
+        if ("POST".equals(conexao.getRequestMethod())) {
             try {
-                String body = lerBody(exchange);
-                String[] p = body.split(":");
-                if (p.length < 4) {
-                    responderErro(exchange, "Corpo da requisicao invalido para cadastro de imovel.", 400);
+                String corpo = lerCorpoRequisicao(conexao);
+                String[] partes = corpo.split(":");
+                if (partes.length < 4) {
+                    responderErro(conexao, "Corpo da requisicao invalido para cadastro de imovel.", 400);
                     return;
                 }
-                String titulo = p[0].trim();
-                String localizacao = p[1].trim();
-                String preco = p[2].trim();
-                String imagem = p[3].trim();
+                String titulo = partes[0].trim();
+                String localizacao = partes[1].trim();
+                String preco = partes[2].trim();
+                String imagem = partes[3].trim();
 
                 // Gera valores padrão completos para a nova visualização de detalhes do imóvel
                 String detalhes = "2 quartos • 1 banheiro • WiFi";
@@ -34,17 +34,17 @@ public class CadastroImovelHandler extends AbstractHttpHandler {
                 String scores = "8.0,8.5,8.0,8.2";
                 String proprietario = "Anfitriao Sena";
 
-                Imovel im = new Imovel(0, titulo, localizacao, preco, imagem, detalhes, rating, badges, estrelas,
+                Imovel imovel = new Imovel(0, titulo, localizacao, preco, imagem, detalhes, rating, badges, estrelas,
                                        endereco, descricao, comodidades, scores, proprietario);
-                imovelDAO.save(im);
+                imovelDAO.save(imovel);
                 
-                responderJSON(exchange, "{\"msg\": \"Imovel cadastrado com sucesso!\"}", 200);
-            } catch (Exception e) {
-                e.printStackTrace();
-                responderErro(exchange, "Erro ao cadastrar imovel: " + e.getMessage(), 500);
+                responderJSON(conexao, "{\"msg\": \"Imovel cadastrado com sucesso!\"}", 200);
+            } catch (Exception erro) {
+                erro.printStackTrace();
+                responderErro(conexao, "Erro ao cadastrar imovel: " + erro.getMessage(), 500);
             }
         } else {
-            responderErro(exchange, "Metodo nao suportado.", 405);
+            responderErro(conexao, "Metodo nao suportado.", 405);
         }
     }
 }
