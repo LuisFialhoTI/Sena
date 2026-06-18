@@ -41,8 +41,9 @@ public class Imovel {
         this.proprietario = proprietario;
     }
 
-    // Getters e Setters
+    // Método Getter: Permite ler o título de forma controlada
     public int getId() { return id; }
+    // Método Setter: Permite alterar o título de forma controlada
     public void setId(int id) { this.id = id; }
 
     public String getTitulo() { return titulo; }
