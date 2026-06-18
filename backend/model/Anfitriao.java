@@ -1,3 +1,5 @@
+package model;
+
 public class Anfitriao extends Usuario {
     
     public Anfitriao(int id, String nome, String email, String senha) {

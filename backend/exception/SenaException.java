@@ -1,3 +1,5 @@
+package exception;
+
 public class SenaException extends Exception {
 
     // 1º Construtor: Recebe apenas a mensagem de erro (1 parâmetro)
