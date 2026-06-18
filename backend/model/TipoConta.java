@@ -21,6 +21,6 @@ public enum TipoConta {
                 return t;
             }
         }
-        return HOSPEDE; // Fallback padrão
+        return HOSPEDE;
     }
 }

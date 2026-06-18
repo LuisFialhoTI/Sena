@@ -13,14 +13,13 @@ public class Imovel {
     private String rating;
     private String badges;
     private String estrelas;
-    
-    // Campos adicionais para a visualização de detalhes
     private String endereco;
     private String descricao;
     private String comodidades; 
     private String scores;      
     private String proprietario;
-    
+    // ... ninguém de fora consegue acessar ou alterar essas variáveis diretamente
+
     private List<Avaliacao> avaliacoes = new ArrayList<>();
 
     public Imovel(int id, String titulo, String localizacao, String preco, String imagem, 
@@ -42,8 +41,9 @@ public class Imovel {
         this.proprietario = proprietario;
     }
 
-    // Getters e Setters
+    // Método Getter: Permite ler o título de forma controlada
     public int getId() { return id; }
+    // Método Setter: Permite alterar o título de forma controlada
     public void setId(int id) { this.id = id; }
 
     public String getTitulo() { return titulo; }
