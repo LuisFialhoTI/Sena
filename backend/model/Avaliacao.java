@@ -8,13 +8,14 @@ public class Avaliacao {
     private int segurancaRua;
     private int comodidade;
     private int localizacao;
-    private String tags;        // Separado por vírgulas (ex: "Rua bem iluminada,Regiao segura")
+    private String tags;       
     private String comentario;
-    private String dataCriacao; // Formato de texto para serialização JSON simples
+    private String dataCriacao; 
 
-    // Construtor Padrão
+    // CONSTRUTOR PARAMETRIZADO (Recebe os valores de fora)
     public Avaliacao(int id, int imovelId, int avaliacaoGeral, int segurancaBairro, int segurancaRua, 
                      int comodidade, int localizacao, String tags, String comentario, String dataCriacao) {
+        // Atribui os parâmetros aos atributos da classe
         this.id = id;
         this.imovelId = imovelId;
         this.avaliacaoGeral = avaliacaoGeral;
